@@ -1,0 +1,250 @@
+*,
+::after,
+::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    line-height: 1.15;
+}
+
+body {
+    font-size: 16px;
+    color: #333;
+    font-family: 'Alata', sans-serif;
+    background-color: #eee;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+.nav {
+    position: fixed;
+    z-index: 99999;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+
+    &.footer-nav,
+    .navbar {
+        display: flex
+    }
+
+    .navbar {
+        width: 100%;
+
+        &.left-side,
+        &.right-side {
+            max-width: 40%;
+            background-color: #333;
+            overflow: hidden;
+
+            .items {
+                width: 100%;
+                max-width: 50%;
+            }
+        }
+
+        &.left-side {
+            border-top-right-radius: 16px;
+        }
+
+        &.right-side {
+            border-top-left-radius: 16px;
+        }
+
+        &.center-side {
+            max-width: 20%;
+            background-color: #333;
+
+            .items {
+                width: 100%;
+                position: relative;
+                z-index: 2;
+
+                &::after {
+                    content: "";
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                    background-color: #eee;
+                    border-radius: 999px;
+                    position: relative;
+                    transform: translateY(-28.5px) scaleY(0.9);
+                    position: absolute;
+                    z-index: -1;
+                    top: 0;
+                    left: 0;
+                }
+            }
+
+            .icons {
+                img {
+                    top: 0;
+                    transform: translate(-50%, -10px) scale(1);
+                }
+            }
+        }
+
+
+    }
+}
+
+.icons {
+    width: 100%;
+    height: 100%;
+    display: block;
+    text-align: center;
+    position: relative;
+    transition: all .3s ease;
+
+    &.active {
+        img {
+            filter: invert(1) !important;
+        }
+    }
+
+    .notification-count {
+        position: absolute;
+        z-index: 1;
+        width: 20px;
+        height: 20px;
+        top: 34px;
+        right: 28px;
+        font-size: 14px;
+        color: #333;
+
+        &.none {
+            display: none;
+        }
+
+        &::after {
+            content: '';
+            width: 22px;
+            height: 22px;
+            border: 2px solid #333;
+            border-radius: 999px;
+            position: absolute;
+            display: block;
+            top: -3px;
+            left: -1px;
+            background-color: #eee;
+            z-index: -1;
+        }
+    }
+
+    img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.55);
+        width: 50%;
+        filter: invert(0.5);
+    }
+
+    &.icons--bell img {
+        max-width: 40px;
+    }
+
+    /**&.icons--calendar img {
+        max-width: 40px;
+    }
+
+    &.icons--analytisc img {
+        max-width: 40px;
+    }
+
+    &.icons--people img {
+        max-width: 40px;
+    }
+
+    &.icons--analytics img {
+        max-width: 40px;
+    }
+
+    &.icons--recycle img {
+        max-width: 40px;
+    }
+
+    &.icons--phone img {
+        max-width: 40px;
+    }
+
+    &.icons--party img {
+        max-width: 40px;
+    }
+
+    &.icons--bus img {
+        max-width: 40px;
+    }**/
+
+    @media only screen and (min-width: 400px) {
+        &:hover {
+            background-color: #333;
+
+            img {
+                filter: invert(1);
+            }
+        }
+    }
+}
+
+
+.lists {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    padding: 10px 0;
+    border-radius: 10px;
+    margin-top: 60px;
+
+    .list__item {
+        width: 100%;
+        max-width: calc(100% / 3);
+        padding: 10px;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .lists__nav {
+        width: 50px;
+        height: 50px;
+        position: relative;
+        display: block;
+        margin: 0 auto;
+        border-radius: 10px;
+        border: 2px solid #aaa;
+
+        img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.6);
+        }
+    }
+
+    .lists__title {
+        font-size: 13px;
+        margin-top: 10px;
+    }
+}

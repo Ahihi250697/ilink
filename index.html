@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="./css/font-awesome.css"> -->
+    <!-- <link rel="stylesheet" href="./css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="./css/styles.css">
+    <title></title>
+</head>
+
+<body>
+
+
+    <nav class="nav footer-nav">
+        <div class="navbar left-side">
+            <div class="items">
+                <a class="icons icons--bell active">
+                    <img src="./images/bell.png" alt="">
+                    <!-- <span class="notification-count">10</span> -->
+                </a>
+            </div>
+            <div class="items">
+                <a class="icons icon--analytiscs">
+                    <img src="./images/event.png" alt="">
+                </a>
+            </div>
+        </div>
+
+        <div class="navbar center-side">
+            <div class="items">
+                <a class="icons icon-people">
+                    <img src="./images/home.png" alt="">
+                </a>
+            </div>
+        </div>
+
+        <div class="navbar right-side">
+            <div class="items">
+                <a class="icons icon--analytisc">
+                    <img src="./images/bus.png" alt="">
+                </a>
+            </div>
+            <div class="items">
+                <a class="icons icon--recycle">
+                    <img src="./images/phone.png" alt="">
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="lists">
+            <div class="list__item">
+                <a class="lists__nav" href="">
+                    <img src="./images/calendar.png" alt="">
+                </a>
+                <h3 class="lists__title">
+                    Lịch bàn giao
+                </h3>
+            </div>
+            <div class="list__item">
+                <a class="lists__nav" href="">
+                    <img src="./images/analytics.png" alt="">
+                </a>
+                <h3 class="lists__title">
+                    Thông tin dự án
+                </h3>
+            </div>
+            <div class="list__item">
+                <a class="lists__nav" href="">
+                    <img src="./images/people.png" alt="">
+                </a>
+                <h3 class="lists__title">
+                    Thông tin cư dân
+                </h3>
+            </div>
+            <div class="list__item">
+                <a class="lists__nav" href="">
+                    <img src="./images/analytic.png" alt="">
+                </a>
+                <h3 class="lists__title">
+                    Biểu mẫu online
+                </h3>
+            </div>
+            <div class="list__item">
+                <a class="lists__nav" href="">
+                    <img src="./images/uti.png" alt="">
+                </a>
+                <h3 class="lists__title">
+                    Tiện ích
+                </h3>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <script src="./js/all.js"></script> -->
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script>
+        $(window).on("load", function () {
+
+            const noti_count = $('.notification-count');
+            (+noti_count.text() <= 0 ? noti_count.addClass(
+                'none') : null);
+
+        })
+    </script>
+</body>
+
+</html>
