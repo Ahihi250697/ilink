@@ -8,76 +8,6 @@
     box-sizing: border-box;
 }
 
-body {
-    line-height: 1;
-}
-
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-    display: block;
-}
-
-ul {
-    list-style: none;
-}
-
-blockquote,
-q {
-    quotes: none;
-}
-
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-    content: '';
-    content: none;
-}
-
-a {
-    font-size: inherit;
-    vertical-align: baseline;
-    text-decoration: none;
-    outline: 0;
-    cursor: pointer;
-    color: inherit;
-}
-
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-
-/* change border colour to suit your needs */
-
-hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 0;
-    padding: 0;
-}
-
-input,
-select {
-    vertical-align: middle;
-}
-
-/* ----------------------------------------------------------
-	1. ベース
-------------------------------------------------------------- */
-
 html {
     overflow-y: overlay;
     -webkit-text-size-adjust: 100%;
@@ -87,42 +17,43 @@ html {
 
 body {
     background-color: #fff;
-    color: #333;
     word-wrap: break-word;
     font-size: 1.6rem;
+    line-height: 1.15;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: bold;
+button,
+a {
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    background-color: transparent;
 }
 
-ul,
-ol {
-    list-style: none;
+a {
+    display: inline-block;
+    font-size: inherit;
+    vertical-align: baseline;
+    text-decoration: none;
+    color: inherit;
 }
 
-pre {
-    font-family: monospace, serif;
-    white-space: pre-wrap;
-    word-wrap: break-word;
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
-
+input,
+select,
 img {
     vertical-align: middle;
 }
 
-sup {
-    vertical-align: text-top;
-}
 
-sub {
-    vertical-align: text-bottom;
+
+ul,
+ol {
+    list-style: none;
 }
 
 br {
@@ -131,50 +62,4 @@ br {
 
 p {
     line-height: 1.6;
-}
-
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-caption,
-th,
-td {
-    font-weight: normal;
-    text-align: left;
-}
-
-input,
-textarea,
-select {
-    margin: 0;
-    font-family: inherit;
-    font-size: inherit;
-    padding: 0;
-}
-
-input,
-button {
-    line-height: normal;
-    vertical-align: middle;
-}
-
-textarea {
-    overflow: auto;
-    vertical-align: top;
-}
-
-select {
-    background-color: inherit;
-    line-height: normal;
-}
-
-label {
-    cursor: pointer;
-}
-
-legend {
-    color: #333;
-    margin-left: -7px;
 }

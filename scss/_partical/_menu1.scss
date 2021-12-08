@@ -1,0 +1,119 @@
+.nav--01 {
+    border-bottom: 1px solid #ccc;
+    background-color: #A1AAC1;
+
+    --nav-height: 80px;
+
+    >.nav-mask {
+        position: fixed;
+        z-index: -1;
+        top: var(--nav-height);
+        ;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #C5CEDA;
+    }
+
+    >.nav-container {
+        width: 100%;
+        height: var(--nav-height);
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .nav-logo {
+        font-size: 3rem;
+        color: #d8dce6;
+    }
+
+    .navbar {
+        position: fixed;
+        right: 0;
+        top: var(--nav-height);
+        width: 320px;
+        height: 100%;
+        background-color: #A1AAC1;
+        transform: translateX(100%);
+        transition: transform 0.4s ease, opacity 0.4s linear;
+
+        &.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .nav-menu {
+        width: 100%;
+        height: 100%;
+        display: block;
+        position: relative;
+    }
+
+    .nav-item {
+        padding: 6px 20px;
+
+        &:nth-child(even) {
+            background-color: #ACB6C6;
+        }
+
+        &.item-sub-menu {
+            >.nav-link {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                &::after {
+                    content: '';
+                    border: 8px solid transparent;
+                    border-left-color: #C5CEDA;
+                }
+            }
+
+
+            &.active {
+                >.nav-sub-menu {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+        }
+    }
+
+    .nav-link {
+        padding: 5px 0;
+        font-size: 1.8rem;
+        color: #d8dce6;
+        display: block;
+        position: relative;
+    }
+
+    .nav-sub-menu {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform-origin: top left;
+        transform: translateX(100%);
+        opacity: 0;
+        transition: transform 0.4s ease, opacity 0.4s linear;
+        background-color: #A1AAC1;
+
+        .nav-sub-menu-back {
+            display: flex;
+            align-items: center;
+
+            &::before {
+                content: '';
+                border: 8px solid transparent;
+                border-right-color: #d8dce6;
+                margin-right: 15px;
+                margin-left: -8px;
+            }
+        }
+    }
+}

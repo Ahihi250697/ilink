@@ -6,46 +6,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="./assets/css/reset.css">
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./assets/plugins/slick/slick.css">
+    <link rel="stylesheet" href="./assets/plugins/slick/slick-theme.css">
+    <link rel="stylesheet" href="./css/styled.css">
     <link rel="stylesheet" href="./css/top.css">
-    <title></title>
-    <script src="./assets/js/jquery-3.4.1.js"></script>
-    <script src="./js/page.js"></script>
+    <title>title</title>
+
 </head>
 
 <body>
-    <header>
-        <script>
-            getHeader();
-        </script>
-    </header>
-    <main>
-        <section class="mv">
-            <picture>
-                <source srcset="./images/default/img_ahri_0.jpg" media="(prefers-color-scheme: no-preference)">
-                <!-- Use this image if the user's OS setting is light or unset -->
-                <source srcset="./images/custom1/img_ahri_0.jpg" media="(prefers-color-scheme: light)">
-                <!-- Use this image if the user's OS setting is dark -->
-                <source srcset="./images/custom2/img_ahri_0.jpg" media="(prefers-color-scheme: dark)">
+    <div id="loading"></div>
 
-                <img src="./images/default/img_ahri_0.jpg" alt="">
-            </picture>
-        </section>
+    <header id="header"></header>
+
+    <div class="wrapper">
+        <div class="screen">
+
+        </div>
+        <div class="screen s375">
+
+        </div>
+        <div class="screen s1024">
+
+        </div>
+        <div class="screen s640">
+
+        </div>
+
+    </div>
+
+
+    <main id="main">
     </main>
-    <footer></footer>
-    <script src="./js/darkmode.js"></script>
-    <script language="JavaScript" type="text/javascript">
-        let posNum = 7;
 
-        document.write('<img src = "cts/counter_s.php?pos=0" width = "0" height = "0">');
-        for (let i = posNum; i > 0; i--) {
-            document.write('<img src="./cts/counter_s.php?pos=' + i + '">');
-        }
+    <footer></footer>
+    <script src="./assets/js/jquery-3.4.1.js"></script>
+    <script src="./assets/plugins/slick/slick.min.js"></script>
+    <script src="./js/components.js" props="hehe"></script>
+    <script>
+        Header({
+            direction: "../../",
+            active: "Works"
+        });
     </script>
-    <img src="./cts/img/1.gif">
+    <script src="./js/common.js"></script>
 </body>
 
 </html>

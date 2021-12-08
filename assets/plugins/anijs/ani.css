@@ -1,0 +1,405 @@
+/** animation base **/
+.ani {
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+a.ani.animated:hover {
+    opacity: 0.75;
+}
+
+.ani.fade-in,
+.ani.fade-in-up {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.ani.fade-in.animated,
+.ani.fade-in-up.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.ani.fade-in-down {
+    opacity: 0;
+    transform: translateY(-40px);
+}
+
+.ani.fade-in-down.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.ani.fade-in-left {
+    opacity: 0;
+    transform: translateX(-40px);
+}
+
+.ani.fade-in-left.animated {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.ani.fade-in-right {
+    opacity: 0;
+    transform: translateX(40px);
+}
+
+.ani.fade-in-right.animated {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.ani.fade-zoom-in {
+    opacity: 0;
+    transform: scale(1.2);
+}
+
+.ani.fade-zoom-in.animated {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.ani.fade-zoom-out {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.ani.fade-zoom-out.animated {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.ani.after-in-down,
+.ani.after-in-left,
+.ani.after-in-right,
+.ani.after-in-up {
+    position: relative;
+    overflow: hidden;
+}
+
+.ani.after-in-down::after,
+.ani.after-in-left::after,
+.ani.after-in-right::after,
+.ani.after-in-up::after {
+    content: "";
+    position: absolute;
+    background-color: #333;
+}
+
+.ani.after-in-down *,
+.ani.after-in-left *,
+.ani.after-in-right *,
+.ani.after-in-up * {
+    opacity: 0;
+    transition: all 0.3s ease 0.3s;
+}
+
+.ani.after-in-down.animated *,
+.ani.after-in-left.animated *,
+.ani.after-in-right.animated *,
+.ani.after-in-up.animated * {
+    opacity: 1;
+}
+
+.ani.after-in-down::after {
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform-origin: bottom;
+}
+
+.ani.after-in-down.animated::after {
+    animation: kf_after_in_down 1s ease 0s 1 both;
+}
+
+.ani.after-in-left::after {
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform-origin: right;
+}
+
+.ani.after-in-left.animated::after {
+    animation: kf_after_in_left 1s ease 0s 1 both;
+}
+
+.ani.after-in-right::after {
+    top: 0;
+    right: 0;
+    height: 100%;
+    transform-origin: left;
+}
+
+.ani.after-in-right.animated::after {
+    animation: kf_after_in_right 1s ease 0s 1 both;
+}
+
+.ani.after-in-up::after {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transform-origin: top;
+}
+
+.ani.after-in-up.animated::after {
+    animation: kf_after_in_up 1s ease 0s 1 both;
+}
+
+.ani.after-in-cross,
+.ani.after-in-cross-rev,
+.ani.after-in-cross-up-down,
+.ani.after-in-cross-left-right,
+.ani.after-in-spin {
+    position: relative;
+    overflow: hidden;
+}
+
+.ani.after-in-cross::before,
+.ani.after-in-cross::after,
+.ani.after-in-cross-rev::before,
+.ani.after-in-cross-rev::after,
+.ani.after-in-cross-up-down::before,
+.ani.after-in-cross-up-down::after,
+.ani.after-in-cross-left-right::before,
+.ani.after-in-cross-left-right::after,
+.ani.after-in-spin::before,
+.ani.after-in-spin::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #333;
+    transform: translate(0%, 0%);
+    transition: all 1s ease;
+}
+
+.ani.after-in-cross::after {
+    top: 0;
+    left: 0;
+}
+
+.ani.after-in-cross::before {
+    bottom: 0;
+    right: 0;
+}
+
+.ani.after-in-cross.animated::after {
+    transform: translate(-110%, -110%);
+}
+
+.ani.after-in-cross.animated::before {
+    transform: translate(110%, 110%);
+}
+
+.ani.after-in-cross-rev::after {
+    top: 0;
+    right: 0;
+}
+
+.ani.after-in-cross-rev::before {
+    bottom: 0;
+    left: 0;
+}
+
+.ani.after-in-cross-rev.animated::after {
+    transform: translate(110%, -110%);
+}
+
+.ani.after-in-cross-rev.animated::before {
+    transform: translate(-110%, 110%);
+}
+
+.ani.after-in-cross-up-down::after {
+    top: 0;
+    right: 0;
+}
+
+.ani.after-in-cross-up-down::before {
+    bottom: 0;
+    left: 0;
+}
+
+.ani.after-in-cross-up-down.animated::after {
+    transform: translate(0%, -110%);
+}
+
+.ani.after-in-cross-up-down.animated::before {
+    transform: translate(0%, 110%);
+}
+
+.ani.after-in-cross-left-right::after {
+    top: 0;
+    right: 0;
+}
+
+.ani.after-in-cross-left-right::before {
+    bottom: 0;
+    left: 0;
+}
+
+.ani.after-in-cross-left-right.animated::after {
+    transform: translate(-110%, 0%);
+}
+
+.ani.after-in-cross-left-right.animated::before {
+    transform: translate(110%, 0%);
+}
+
+.ani.after-in-custom {
+    position: relative;
+}
+
+.ani.after-in-custom::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    background-color: #262626;
+    z-index: 1;
+}
+
+.ani.after-in-custom * {
+    opacity: 0;
+    transition: all 0.3s ease 1s;
+}
+
+.ani.after-in-custom.animated::after {
+    animation-name: kf_after_custom;
+    animation-duration: 1.5s;
+}
+
+.ani.after-in-custom.animated * {
+    opacity: 1;
+}
+
+@keyframes kf_after_in_down {
+    0% {
+        height: 0;
+    }
+
+    40%,
+    50% {
+        height: 100%;
+        transform: scale(1, 1);
+    }
+
+    100% {
+        height: 100%;
+        transform: scale(1, 0);
+    }
+}
+
+@keyframes kf_after_in_left {
+    0% {
+        width: 0;
+    }
+
+    40%,
+    50% {
+        width: 100%;
+        transform: scale(1, 1);
+    }
+
+    100% {
+        width: 100%;
+        transform: scale(0, 1);
+    }
+}
+
+@keyframes kf_after_in_right {
+    0% {
+        width: 0;
+    }
+
+    40%,
+    50% {
+        width: 100%;
+        transform: scale(1, 1);
+    }
+
+    100% {
+        width: 100%;
+        transform: scale(0, 1);
+    }
+}
+
+@keyframes kf_after_in_up {
+    0% {
+        height: 0;
+    }
+
+    40%,
+    50% {
+        height: 100%;
+        transform: scale(1, 1);
+    }
+
+    100% {
+        height: 100%;
+        transform: scale(1, 0);
+    }
+}
+
+/** animation line bar **/
+.ani.ani-bar {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+
+.ani.ani-bar::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #c81243;
+    transform: translateX(-110%);
+    transition: all 1s ease;
+}
+
+.ani.ani-bar * {
+    opacity: 0;
+    transition: all 0.5s ease 0.3s;
+}
+
+.ani.ani-bar.animated::after {
+    transform: translateX(110%);
+}
+
+.ani.ani-bar.animated * {
+    opacity: 1;
+}
+
+@keyframes kf_after_custom {
+    0% {
+        width: 10%;
+        height: 0;
+        left: 0;
+    }
+
+    35% {
+        width: 10%;
+        height: 100%;
+        left: 0;
+    }
+
+    65% {
+        width: 100%;
+        height: 100%;
+        left: 0;
+    }
+
+    100% {
+        width: 0%;
+        height: 100%;
+        left: 100%;
+    }
+}
