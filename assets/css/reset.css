@@ -49,7 +49,14 @@ img {
     vertical-align: middle;
 }
 
+figure {
+    width: 100%;
+}
 
+figure img {
+    width: 100%;
+    display: block;
+}
 
 ul,
 ol {

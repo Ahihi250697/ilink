@@ -1,0 +1,64 @@
+.loading {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    >.span {
+        display: block;
+        position: absolute;
+        background-color: #000;
+        animation-name: kf_default;
+        animation-iteration-count: 1;
+        animation-fill-mode: both;
+        animation-duration: 1s;
+
+        &.zoom-in {
+            animation-name: kf_zoomin;
+        }
+
+        &.bounce {
+            animation-name: kf_bounce;
+        }
+    }
+}
+
+@keyframes kf_default {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes kf_bounce {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    20% {
+        transform: scale(1.2)
+    }
+
+    60% {
+        transform: scale(1)
+    }
+
+    100% {
+        transform: scale(1.1);
+        opacity: 0;
+    }
+}
+
+@keyframes kf_zoomin {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+}

@@ -32,6 +32,22 @@ figure img {
   left: 0;
   width: 100%;
   z-index: 1024;
+  border-bottom: 1px solid #ccc;
+  background-color: #A1AAC1;
+  --nav-height: 80px;
+}
+.nav > .nav-mask {
+  position: fixed;
+  z-index: -1;
+  top: var(--nav-height);
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #C5CEDA;
+}
+.nav .nav-logo {
+  font-size: 3rem;
+  color: #d8dce6;
 }
 .nav .nav-toggler {
   width: 30px;

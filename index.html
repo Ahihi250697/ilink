@@ -8,50 +8,131 @@
     <meta name="description" content="">
 
     <link rel="stylesheet" href="./assets/css/reset.css">
-    <link rel="stylesheet" href="./assets/plugins/slick/slick.css">
-    <link rel="stylesheet" href="./assets/plugins/slick/slick-theme.css">
     <link rel="stylesheet" href="./css/styled.css">
-    <link rel="stylesheet" href="./css/top.css">
     <title>title</title>
 
 </head>
 
 <body>
-    <div id="loading"></div>
-
-    <header id="header"></header>
-
-    <div class="wrapper">
-        <div class="screen">
-
-        </div>
-        <div class="screen s375">
-
-        </div>
-        <div class="screen s1024">
-
-        </div>
-        <div class="screen s640">
-
-        </div>
-
-    </div>
+    <div class="loading loading-01"></div>
 
 
     <main id="main">
+        <figure>
+            <img src="./images/default/img_default.jpg" alt="">
+        </figure>
     </main>
 
     <footer></footer>
     <script src="./assets/js/jquery-3.4.1.js"></script>
-    <script src="./assets/plugins/slick/slick.min.js"></script>
-    <script src="./js/components.js" props="hehe"></script>
     <script>
-        Header({
-            direction: "../../",
-            active: "Works"
+        const Loading = (opts = -1) => {
+            const _ = $(".loading");
+            let defaults = {
+                columns: 10,
+                minSize: 120,
+                loadingType: "random",
+                loadingStyle: "opacity",
+                delayTimingMin: 0.2,
+                delayTimingEachOther: 0.04,
+            }
+            defaults = {
+                ...defaults,
+                ...opts
+            }
+
+
+            console.log(defaults);
+
+            // create span
+            const CreateSpan = (c = "", x, y, size, delay) => {
+                return `<span class="span ${c}" style="top: ${x}px; left: ${y}px; width:${size}px; height:${size}px; animation-delay:${delay}s"></span>`;
+            }
+
+            // init
+            const LoadingInit = () => {
+                let _width = _.innerWidth(),
+                    _height = _.innerHeight(),
+                    _size = _width / defaults.columns || _width / 5,
+                    _column = +defaults.columns || _width / _size,
+                    _row = (_height / _size);
+
+                console.log(_size, _column, _row);
+                let _html = '';
+                for (let _i = 0; _i < _column; _i++) {
+                    for (let _j = 0; _j < _row; _j++) {
+                        // create
+                        let _x = _j * _size,
+                            _y = _i * _size,
+                            _delay = defaults.delayTimingMin;
+
+                        switch (defaults.loadingType) {
+                            case "random": {
+                                _delay = Math.random(1) + defaults.delayTimingMin;
+                                break;
+                            }
+                            case "topleft": {
+                                _delay = (_i + _j) * defaults.delayTimingEachOther + defaults.delayTimingMin;
+                                break;
+                            }
+                            case "center": {
+                                let _dx = Math.abs((_column - 1) * 0.5 - _i) + (_column - 1) * 0.5,
+                                    _dy = Math.abs((_row - 1) * 0.5 - _j) + (_row - 1) * 0.5;
+                                _delay = (_dx + _dy) * defaults.delayTimingEachOther + defaults.delayTimingMin;
+                                break;
+                            }
+                            case "center1": {
+                                let _dx = Math.abs((_row - _column) * 0.5 + _i - _j);
+                                _delay = (_dx) * defaults.delayTimingEachOther + defaults
+                                    .delayTimingMin;
+                                break;
+                            }
+
+                            case "center2": {
+                                _delay = Math.abs(-(_column - _row) * 0.5 + _i + _j) * defaults
+                                    .delayTimingEachOther + defaults.delayTimingMin;
+                                break;
+                            }
+                            case "center3": {
+                                let _dx = Math.abs((_column - 1) * 0.5 - _i) + (_column - 1) * 0.5,
+                                    _dy = _j;
+                                _delay = (_dx + _dy) * defaults
+                                    .delayTimingEachOther + defaults.delayTimingMin;
+                                break;
+                            }
+                            case "center4": {
+                                let _dx = Math.abs((_column - 1) * 0.5 - _i) + (_column - 1) * 0.5,
+                                    _dy = _j;
+                                _delay = Math.abs(_dx - _dy) * defaults
+                                    .delayTimingEachOther + defaults.delayTimingMin;
+                                break;
+                            }
+                            default: {
+                                _delay = Math.random(1) + defaults.delayTimingMin;
+                                break;
+                            }
+                        }
+                        _html += CreateSpan(defaults.loadingStyle, _x, _y, _size, _delay);
+
+                    }
+                }
+
+                _.append(_html);
+            }
+
+            LoadingInit();
+        }
+
+        Loading({
+            loadingType: "center2"
         });
+        // 
+        // $(window).on("load", () => {
+        //     let _destroy = setTimeout(() => {
+        //         $(".loading").remove();
+        //     }, 2500)
+        // });
     </script>
-    <script src="./js/common.js"></script>
 </body>
 
 </html>

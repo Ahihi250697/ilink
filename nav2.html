@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nav 2</title>
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/nav.css">
+
+</head>
+
+<body>
+    <header id="header">
+        <nav class="nav nav--02">
+            <div class="nav-mask"></div>
+
+            <div class="container nav-container">
+
+                <h1 class="nav-logo">
+                    <a href="" class="nav-link">
+                        LOGO
+                    </a>
+                </h1>
+
+                <div class="navbar">
+
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                00
+                            </a>
+                        </li>
+
+                        <li class="nav-item item-sub-menu">
+                            <a href="" class="nav-link">
+                                01
+                            </a>
+
+                            <ul class="nav-sub-menu">
+                                <li class="nav-item item-sub-menu">
+                                    <a href="" class="nav-link">
+                                        02
+                                    </a>
+                                    <ul class="nav-sub-menu">
+                                        <li class="nav-item">
+                                            <a href="" class="nav-link">
+                                                03
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="" class="nav-link">
+                                                04
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item item-sub-menu">
+                                    <a href="" class="nav-link">
+                                        05
+                                    </a>
+
+                                    <ul class="nav-sub-menu">
+                                        <li class="nav-item item-sub-menu">
+                                            <a href="" class="nav-link">
+                                                06
+                                            </a>
+                                            <ul class="nav-sub-menu">
+                                                <li class="nav-item">
+                                                    <a href="" class="nav-link">
+                                                        07
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="" class="nav-link">
+                                                        08
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="" class="nav-link">
+                                                09
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item item-sub-menu">
+                            <a href="" class="nav-link">
+                                10
+                            </a>
+
+                            <ul class="nav-sub-menu">
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        11
+                                    </a>
+                                </li>
+                                <li class="nav-item item-sub-menu">
+                                    <a href="" class="nav-link">
+                                        12
+                                    </a>
+
+                                    <ul class="nav-sub-menu">
+                                        <li class="nav-item">
+                                            <a href="" class="nav-link">
+                                                13
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="" class="nav-link">
+                                                14
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <button class="nav-toggler"></button>
+            </div>
+        </nav>
+    </header>
+
+    <script src="./assets/js/jquery-3.4.1.js"></script>
+
+    <script>
+        const ItemSubMenu = $(".item-sub-menu > .nav-link");
+        const ClassState = (e, sta) => {
+            sta ? e.removeClass("active") : e.addClass("active");
+        }
+        ItemSubMenu.on("click", function (e) {
+            e.preventDefault();
+            let _ = $(this).parent();
+            console.log(_.index())
+            _.hasClass("active") ? ClassState(_, true) : ClassState(_, false);
+        });
+
+        const NavSubMenuDelay = () => {
+            const NavSubMenu = $(".nav-sub-menu");
+            $.each(NavSubMenu, function () {
+                let NavSubMenuItem = $(this).find(".nav-item");
+
+                NavSubMenuItem.map((a, b) => {
+                    $(b).css({
+                        "animation-delay": `${(a+0.15)*0.1}s`
+                    });
+                })
+            });
+        }
+        NavSubMenuDelay();
+    </script>
+</body>
+
+</html>
