@@ -89,7 +89,7 @@
                             }
 
                             case "center2": {
-                                _delay = Math.abs(-(_column - _row) * 0.5 + _i + _j) * defaults
+                                _delay = Math.abs((_column + _row - 2) * 0.5 - _i - _j) * defaults
                                     .delayTimingEachOther + defaults.delayTimingMin;
                                 break;
                             }
@@ -123,8 +123,23 @@
             LoadingInit();
         }
 
+        /*
+            hướng dẫn sử dụng
+           
+                Loading({
+                    columns: 10, số cột hiện thị trên màn hình
+                    loadingType: "random", hiện tại là "random", "topleft", "center", "center1","center2","center3","center4"
+                    loadingStyle: "opacity", hiện tại là "random", "zoomin", "bounce"
+                    delayTimingMin: 0.2, thời gian delay tới lúc bắt đầu hiệu ứng
+                    delayTimingEachOther: 0.04, thời gian delay giữa các phần tử
+                });
+
+                muốn thay cái gì copy xuống dưới đổi
+
+        */
         Loading({
-            loadingType: "center2"
+            loadingType: "topleft",
+            loadingStyle: "bounce"
         });
         // 
         // $(window).on("load", () => {
