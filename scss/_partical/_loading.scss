@@ -13,10 +13,14 @@
         animation-name: kf_default;
         animation-iteration-count: 1;
         animation-fill-mode: both;
-        animation-duration: 1s;
+        animation-duration: 1.5s;
 
         &.zoom-in {
             animation-name: kf_zoomin;
+        }
+
+        &.fall-up {
+            animation-name: kf_fallup;
         }
 
         &.bounce {
@@ -38,15 +42,23 @@
     }
 
     20% {
-        transform: scale(1.2)
+        transform: scale(0.8);
     }
 
-    60% {
-        transform: scale(1)
+    40% {
+        transform: scale(1.2);
+    }
+
+    75% {
+        transform: scale(0.6);
+    }
+
+    85% {
+        transform: scale(1);
     }
 
     100% {
-        transform: scale(1.1);
+        transform: scale(0.6);
         opacity: 0;
     }
 }
@@ -60,5 +72,22 @@
     100% {
         opacity: 0;
         transform: scale(0.2);
+    }
+}
+
+@keyframes kf_fallup {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    40%,
+    60% {
+        transform: translateY(0) scale(0.4);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-100%) scale(0);
     }
 }

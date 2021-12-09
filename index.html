@@ -34,7 +34,7 @@
                 loadingType: "random",
                 loadingStyle: "opacity",
                 delayTimingMin: 0.2,
-                delayTimingEachOther: 0.04,
+                delayTimingEachOther: 0.08,
             }
             defaults = {
                 ...defaults,
@@ -107,6 +107,10 @@
                                     .delayTimingEachOther + defaults.delayTimingMin;
                                 break;
                             }
+                            case "unf": {
+                                _size = 200 * (Math.random(20) + 1);
+                                _delay = Math.random(1) + defaults.delayTimingMin;
+                            }
                             default: {
                                 _delay = Math.random(1) + defaults.delayTimingMin;
                                 break;
@@ -129,7 +133,7 @@
                 Loading({
                     columns: 10, số cột hiện thị trên màn hình
                     loadingType: "random", hiện tại là "random", "topleft", "center", "center1","center2","center3","center4"
-                    loadingStyle: "opacity", hiện tại là "random", "zoom-in", "bounce"
+                    loadingStyle: "opacity", hiện tại là "zoom-in", "bounce"
                     delayTimingMin: 0.2, thời gian delay tới lúc bắt đầu hiệu ứng
                     delayTimingEachOther: 0.04, thời gian delay giữa các phần tử
                 });
@@ -138,8 +142,8 @@
 
         */
         Loading({
-            loadingType: "topleft",
-            loadingStyle: "zoom-in"
+            loadingType: "center4",
+            loadingStyle: "fall-up"
         });
         // 
         // $(window).on("load", () => {

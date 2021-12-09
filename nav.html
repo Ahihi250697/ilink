@@ -12,206 +12,146 @@
 </head>
 
 <body>
-    <!-- <header>
-        <nav class="nav nav--01">
-            <div class="nav-mask"></div>
-            <div class="container nav-container">
-
-                <h1 class="nav-logo">
-                    <a href="" class="nav-link">
-                        LOGO
-                    </a>
-                </h1>
-
-                <div class="navbar">
-
-                    <ul class="nav-menu">
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
-                                item 01
-                            </a>
-                        </li>
-
-                        <li class="nav-item item-sub-menu">
-                            <a href="" class="nav-link">
-                                item 02
-                            </a>
-                            <ul class="nav-sub-menu">
-                                <li class="nav-item">
-                                    <a href="" class="nav-link nav-sub-menu-back">
-                                        item 02
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        item 02 01
-                                    </a>
-                                </li>
-                                <li class="nav-item item-sub-menu">
-                                    <a href="" class="nav-link">
-                                        item 02 02
-                                    </a>
-                                    <ul class="nav-sub-menu">
-                                        <li class="nav-item">
-                                            <a href="" class="nav-link nav-sub-menu-back">
-                                                item 02 02
-                                            </a>
-                                        </li>
-                                        <li class="nav-item item-sub-menu">
-                                            <a href="" class="nav-link">
-                                                item 02 02 01
-                                            </a>
-                                            <ul class="nav-sub-menu">
-                                                <li class="nav-item">
-                                                    <a href="" class="nav-link nav-sub-menu-back">
-                                                        item 02 02 01 01
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="" class="nav-link">
-                                                        item 02 02 01 02
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="" class="nav-link">
-                                                        item 02 02 01 03
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="" class="nav-link">
-                                                item 02 02 02
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="" class="nav-link">
-                                                item 02 02 03
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="" class="nav-link">
-                                                item 02 02 04
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item item-sub-menu">
-                            <a href="" class="nav-link">
-                                item 03
-                            </a>
-                            <ul class="nav-sub-menu">
-                                <li class="nav-item">
-                                    <a href="" class="nav-link nav-sub-menu-back">
-                                        item 03
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        item 03 01
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        item 03 02
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        item 03 04
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        item 03 05
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-                    </ul>
-
-                </div>
-
-                <button class="nav-toggler"></button>
-            </div>
-        </nav>
-    </header> -->
-    <header id="header">
-
-    </header>
-
+    <header id="header"></header>
     <main></main>
     <script src="./assets/js/jquery-3.4.1.js"></script>
     <script>
         const ListMenu = [{
-                title: "item 0",
+                title: "item A",
                 href: "#",
                 sub: -1
             },
             {
-                title: "item 1",
-                href: "#",
-                sub: [{
-                    title: "item 1_1",
-                    href: "#",
-                    sub: [{
-                            title: "item 1_1_1",
-                            href: "#",
-                            sub: -1
-                        },
-                        {
-                            title: "item 1_1_2",
-                            href: "#",
-                            sub: [{
-                                    title: "item 1_1_2_1",
-                                    href: "#",
-                                    sub: [{
-                                            title: "item 1_1_2_1_1",
-                                            href: "#",
-                                            sub: -1
-                                        },
-                                        {
-                                            title: "item 1_1_2_1_2",
-                                            href: "#",
-                                            sub: -1
-                                        },
-                                        {
-                                            title: "item 1_1_2_1_3",
-                                            href: "#",
-                                            sub: -1
-                                        },
-                                    ]
-                                }, {
-                                    title: "item 1_1_2_2",
-                                    href: "#",
-                                    sub: -1
-                                },
-                                {
-                                    title: "item 1_1_2_3",
-                                    href: "#",
-                                    sub: -1
-                                }
-                            ]
-                        },
-                        {
-                            title: "item 1_1_3",
-                            href: "#",
-                            sub: -1
-                        },
-                    ]
-                }]
-            }, {
-                title: "item 2",
+                title: "item A",
                 href: "#",
                 sub: -1
-            }, {
-                title: "item 3",
+            },
+            {
+                title: "item A",
+                href: "#",
+                sub: [{
+                        title: "item B",
+                        href: "#",
+                        sub: -1
+                    },
+                    {
+                        title: "item B",
+                        href: "#",
+                        sub: [{
+                                title: "item C",
+                                href: "#",
+                                sub: -1
+                            },
+                            {
+                                title: "item C",
+                                href: "#",
+                                sub: [{
+                                        title: "item D",
+                                        href: "#",
+                                        sub: -1
+                                    },
+                                    {
+                                        title: "item D",
+                                        href: "#",
+                                        sub: [{
+                                                title: "item E",
+                                                href: "#",
+                                                sub: -1
+                                            },
+                                            {
+                                                title: "item E",
+                                                href: "#",
+                                                sub: [{
+                                                        title: "item F",
+                                                        href: "#",
+                                                        sub: [{
+                                                                title: "item G",
+                                                                href: "#",
+                                                                sub: -1
+                                                            },
+                                                            {
+                                                                title: "item G",
+                                                                href: "#",
+                                                                sub: [{
+                                                                        title: "item H",
+                                                                        href: "#",
+                                                                        sub: [{
+                                                                                title: "item I",
+                                                                                href: "#",
+                                                                                sub: [{
+                                                                                    title: "item J",
+                                                                                    href: "#",
+                                                                                    sub: [{
+                                                                                            title: "item K",
+                                                                                            href: "#",
+                                                                                            sub: [{
+                                                                                                    title: "item L",
+                                                                                                    href: "#",
+                                                                                                    sub: -
+                                                                                                        1
+                                                                                                },
+                                                                                                {
+                                                                                                    title: "item L",
+                                                                                                    href: "#",
+                                                                                                    sub: [{
+                                                                                                            title: "item M",
+                                                                                                            href: "#",
+                                                                                                            sub: -
+                                                                                                                1
+                                                                                                        },
+                                                                                                        {
+                                                                                                            title: "item M",
+                                                                                                            href: "#",
+                                                                                                            sub: -
+                                                                                                                1
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            title: "item K",
+                                                                                            href: "#",
+                                                                                            sub: -
+                                                                                                1
+                                                                                        }
+                                                                                    ]
+                                                                                }]
+                                                                            },
+                                                                            {
+                                                                                title: "item I",
+                                                                                href: "#",
+                                                                                sub: -
+                                                                                    1
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        title: "item H",
+                                                                        href: "#",
+                                                                        sub: -1
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        title: "item F",
+                                                        href: "#",
+                                                        sub: -1
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                ]
+                            },
+                        ]
+                    },
+                ]
+            },
+            {
+                title: "item A",
                 href: "#",
                 sub: -1
             },
