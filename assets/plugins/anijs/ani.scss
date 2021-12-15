@@ -1,0 +1,12 @@
+@charset 'UTF-8';
+
+.ani {
+    transition: all 0.3s linear;
+    display: inline-block;
+}
+
+@import './_par/fadein';
+@import './_par/zoom';
+@import './_par/wave';
+@import './_par/linebar';
+@import './_par/bracket';

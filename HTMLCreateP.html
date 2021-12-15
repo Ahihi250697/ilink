@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <style>
+        .mt20 {
+            margin-top: 20px;
+        }
+
+        .mt200 {
+            margin-top: 200px;
+        }
+
+        .p {
+            font-size: 20px;
+            color: #333;
+            font-weight: 500;
+            letter-spacing: -1px;
+        }
+
+        .p.active {
+            background: linear-gradient(89deg, blue 0%, red 20%, yellow 40%, green 60%, #F4F 80%, navy 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .p__span {
+            color: red;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .another-class {
+            font-size: 16px;
+            font-weight: 700;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="root"></div>
+    <p onclick="update_url('/en');">Link</p>
+
+    <script>
+        function update_url(url) {
+            history.pushState(null, null, url);
+        }
+    </script>
+
+    <script src="./assets/js/jquery-3.4.1.js"></script>
+    <script src="./js/HTMLCreateP.js"></script>
+    <script>
+        let a1 = {
+            className: "another-class",
+            moreClassName: "mt20",
+            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis incidunt ducimus praesentium doloremque inventore necessitatibus modi eos nihil non cumque aut rem tempore, quo sunt tempora repellendus fugit facere numquam.",
+        }
+
+        let a2 = {
+            moreClassName: "mt20 active",
+            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis incidunt ducimus praesentium doloremque inventore necessitatibus modi eos nihil non cumque aut rem tempore, quo sunt tempora repellendus fugit facere numquam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis incidunt ducimus praesentium doloremque inventore necessitatibus modi eos nihil non cumque aut rem tempore, quo sunt tempora repellendus fugit facere numquam",
+            span: `<span class="p__span">(this is span)</span>`
+        }
+
+        let a3 = {
+            moreClassName: "mt200",
+            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis incidunt ducimus praesentium doloremque inventore necessitatibus modi eos nihil non cumque aut rem tempore, quo sunt tempora repellendus fugit facere numquam.",
+        }
+
+        $("#root").append(HTMLCreateP(a1));
+        $("#root").append(HTMLCreateP(a2));
+        $("#root").append(HTMLCreateP(a3));
+    </script>
+
+
+</body>
+
+</html>

@@ -80,5 +80,79 @@ main {
     transform: translateY(-100%) scale(0);
   }
 }
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  --c-nav-height: 80px;
+  height: var(--c-nav-height);
+  z-index: 1600;
+  background-color: #AFD5D1;
+}
+.nav > .nav-container {
+  width: 100%;
+  height: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+.nav .nav-brand > .nav-link {
+  color: #21363B;
+}
+.nav .nav-content {
+  margin-left: auto;
+}
+.nav .nav-toggler {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #578D96;
+  display: none;
+}
+@media only screen and (max-width: 1024px) {
+  .nav .nav-toggler {
+    display: block;
+  }
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+}
+.menu .nav-link {
+  display: inline-block;
+  padding: 20px;
+}
+.menu .menu-item {
+  width: 200px;
+  position: relative;
+  background-color: #75C2C4;
+}
+.menu .menu-item::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: 0;
+  width: 50%;
+  height: 30px;
+  display: block;
+  margin: 0 auto;
+  background-color: #619faa;
+}
+.menu .menu-item:nth-child(even) {
+  background-color: #445D61;
+}
+.menu .menu-item > .nav-link.active {
+  background-color: #578D96;
+}
+.menu .menu-sub {
+  position: absolute;
+  left: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.2s ease, opacity 0.3s linear;
+}
 
 /*# sourceMappingURL=styled.css.map */

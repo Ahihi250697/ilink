@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *,
+        ::after,
+        ::before {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            display: block;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script src="./assets/js/jquery-3.4.1.js"></script>
+    <script src="./js/HTMLCreateAnchor.js"></script>
+    <script>
+        let a1 = {
+            moreClassName: "download",
+            title: "download",
+            href: "link/download/file.jpg",
+            download: true,
+            span: `<span class="icon-download"></span>`
+        }
+        let a2 = {
+            title: "image",
+            direction: "./../../",
+            href: "images",
+            target: "_blank",
+            rel: [{
+                    "wow": "fade-in"
+                },
+                {
+                    "wow-delay": "1s"
+                }
+            ],
+            span: `<figure class="figure"><img src="./images/default/img_default.jpg" alt="image"/></figure>`
+        }
+
+        $("#root").append(HTMLCreateAnchor(a1));
+        $("#root").append(HTMLCreateAnchor(a2));
+    </script>
+
+
+</body>
+
+</html>

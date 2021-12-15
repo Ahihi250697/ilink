@@ -1,0 +1,19 @@
+.wave {
+    overflow: hidden;
+
+    >span {
+        color: yellow;
+        opacity: 0;
+        transform: translateY(100%);
+        transition-duration: 0.3s;
+        display: inline-block;
+    }
+
+    &.animated {
+        >span {
+            color: blue;
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}

@@ -1,22 +1,7 @@
 body {
-  font-family: "Courier New", Courier, monospace;
   font-weight: 500;
   letter-spacing: 0.1em;
   font-size: 1.6rem;
-}
-
-figure img {
-  width: 100%;
-}
-
-::-webkit-scrollbar {
-  width: 2px;
-  height: 2px;
-  background-color: #fff;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #000;
 }
 
 .container {

@@ -1,0 +1,48 @@
+.linebar {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+        background-color: red;
+        transform-origin: top right;
+        transform: translateX(-100%);
+    }
+
+    .ani-inside {
+        opacity: 0;
+        transition: opacity 0.2s linear 0.3s;
+    }
+
+    &.animated {
+        &::after {
+            animation: ani_linebar 1s ease 0s 1 both;
+        }
+
+        .ani-inside {
+            opacity: 1;
+        }
+    }
+}
+
+@keyframes ani_linebar {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    35%,
+    65% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
