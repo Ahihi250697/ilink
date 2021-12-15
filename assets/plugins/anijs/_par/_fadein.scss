@@ -1,0 +1,29 @@
+.fade,
+.fade-in {
+    transform: translate3d(0, 40px, 0);
+}
+
+.fade-in-left {
+    transform: translate3d(-40px, 0, 0);
+}
+
+.fade-in-right {
+    transform: translate3d(40, 0, 0);
+}
+
+.fade-in-top {
+    transform: translate3d(0, -40px, 0);
+}
+
+.fade,
+.fade-in,
+.fade-in-left,
+.fade-in-right,
+.fade-in-top {
+    opacity: 0;
+
+    &.animated {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}

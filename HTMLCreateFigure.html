@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <style>
+        .figure {
+            position: relative;
+        }
+
+        .figure.active {
+            border: 10px solid #333;
+        }
+
+        .figure>.figure__caption {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            text-align: center;
+            transform: translateY(-50%);
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .figure .figure__caption-span {
+            font-size: 16px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script src="./assets/js/jquery-3.4.1.js"></script>
+    <script src="./js/HTMLCreateFigure.js"></script>
+    <script>
+        let a1 = {
+            img: {
+                src: "images/default/img_default.jpg",
+            },
+            figcaption: {
+                title: "this is figcaption title",
+            }
+        }
+
+        let a2 = {
+            moreClassName: "active",
+            img: {
+                src: "images/default/img_default1.jpg",
+                alt: "this is alt"
+            },
+            figcaption: {
+                title: "this is figcaption title",
+                span: `<span class="figure__caption-span">this is span</span>`
+            }
+        }
+
+        $("#root").append(HTMLCreateFigure(a1));
+        $("#root").append(HTMLCreateFigure(a2));
+    </script>
+
+
+</body>
+
+</html>

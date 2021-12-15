@@ -1,0 +1,23 @@
+.zoom,
+.zoom-in,
+.zoom-out {
+    opacity: 0;
+}
+
+.zoom,
+.zoom-in {
+    transform: scale(1.25);
+}
+
+.zoom-out {
+    transform: scale(0.75);
+}
+
+.zoom,
+.zoom-in,
+.zoom-out {
+    &.animated {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

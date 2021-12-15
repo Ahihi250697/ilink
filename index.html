@@ -15,16 +15,35 @@
 
 <body>
     <div class="loading loading-01"></div>
-
-
     <main id="main">
         <figure>
             <img src="./images/default/img_default.jpg" alt="">
         </figure>
+
+
     </main>
+
 
     <footer></footer>
     <script src="./assets/js/jquery-3.4.1.js"></script>
+    <script>
+        function emitEvent() {
+            window.dispatchEvent(
+                new CustomEvent(`hihi`, {
+                    detail: function () {
+                        let x = $(window).innerWidth();
+                        return x < 200;
+                    }
+                })
+            );
+        }
+        emitEvent();
+    </script>
+    <script>
+        $(window).on("hihi", function (e) {
+            console.log("e.detail()");
+        });
+    </script>
     <script>
         const Loading = (opts = -1) => {
             const _ = $(".loading");
@@ -107,10 +126,7 @@
                                     .delayTimingEachOther + defaults.delayTimingMin;
                                 break;
                             }
-                            case "unf": {
-                                _size = 200 * (Math.random(20) + 1);
-                                _delay = Math.random(1) + defaults.delayTimingMin;
-                            }
+
                             default: {
                                 _delay = Math.random(1) + defaults.delayTimingMin;
                                 break;
@@ -133,7 +149,7 @@
                 Loading({
                     columns: 10, số cột hiện thị trên màn hình
                     loadingType: "random", hiện tại là "random", "topleft", "center", "center1","center2","center3","center4"
-                    loadingStyle: "opacity", hiện tại là "zoom-in", "bounce"
+                    loadingStyle: "opacity", hiện tại là "zoom-in", "bounce", "fall-up"
                     delayTimingMin: 0.2, thời gian delay tới lúc bắt đầu hiệu ứng
                     delayTimingEachOther: 0.04, thời gian delay giữa các phần tử
                 });
@@ -142,14 +158,16 @@
 
         */
         Loading({
-            loadingType: "center4",
-            loadingStyle: "fall-up"
+             columns: 15,
+             loadingType: "center4",
+             loadingStyle: "bounce",
         });
-        // 
+
+
         // $(window).on("load", () => {
         //     let _destroy = setTimeout(() => {
         //         $(".loading").remove();
-        //     }, 2500)
+        //     }, 5000)
         // });
     </script>
 </body>
