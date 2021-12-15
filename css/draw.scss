@@ -1,0 +1,32 @@
+@charset 'UTF-8';
+
+.square{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	max-width: 1120px;
+	width: 100%;
+	margin: auto;
+}
+.draw, .draw-min, .draw-max{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-flow: row wrap;
+	max-width: 350px;
+	width: 100%;
+	margin: auto;
+	border-top: 2px solid #111;
+	border-left: 2px solid #111;
+	span{
+		width: 100%;
+		text-align: center;
+		line-height: 3.5;
+		font-weight: bold;
+		border-bottom: 2px solid #111;
+		border-right: 2px solid #111;
+		&:nth-of-type(even){
+			background-color: #ccc;
+		}
+	}
+}
