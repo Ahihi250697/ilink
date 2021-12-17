@@ -293,7 +293,7 @@ const BoardCard = {
     CardType: '1 2 3 4'.split(" "),
     Time: $(".timer"),
     TimeCounter: 3,
-    TimeStep: 200,
+    TimeStep: 1000,
 
     // let set coin
     LetSetCoin: $(".let-set-coin"),

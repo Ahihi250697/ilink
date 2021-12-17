@@ -197,6 +197,7 @@ body {
   transform: translate(-50%, 0);
   max-width: 100%;
   min-width: 200px;
+  text-align: center;
   color: #fff;
   animation: kf_noti 1s ease 0s 1 both;
 }
