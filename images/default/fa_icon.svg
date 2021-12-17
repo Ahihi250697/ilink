@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 20px;
+        fill: #385162;
+        font-family: "Inknut Antiqua";
+      }
+    </style>
+  </defs>
+  <image x="-1" y="-1" width="65" height="65" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEEAAABBCAYAAACO98lFAAABBUlEQVR4nO3aQWrDMAAF0XHpoe0T+Ngu6W+Koc0iVqC1588yEBM9pCAlmuZ5Btg43nR757quA4/4294GAUYB/w2CvlcgTD9eOVnvv3zc0w/q2fTLgQcz4dTf9EfSzwSKkPQIFCHpEShC0iNQhKRH4Athf1bQnRvYbZuVg7+nXw63pm07/Q9Dw+lnAkVIegSKkPQIFCHpEShC0iNQhKRHoAhJj0ARkh6BIiQ9AkVIegSKkPQIFCHpEShC0iNQhKRHoAhJj8Cja71Xb1mW+wg//5I3z4TvOwn65UARkh6BIiQ9AkVIegSKkPQIXGXbvNsGH0o/E7jYAerw/eSrzIShC9r65QDwATv7EfFQdIgXAAAAAElFTkSuQmCC"/>
+  <text id="Ahri" class="cls-1" x="5.759" y="39.278">Ahri</text>
+</svg>

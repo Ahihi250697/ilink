@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoardCardGame | 3 cào</title>
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="./css/styled.css">
+    <link rel="shortcut icon" href="../images/default/fa_icon.svg" type="image/x-icon">
+</head>
+
+<body>
+    <span class="timer"></span>
+    <span class="turn"></span>
+
+    <p class="total-coin"></p>
+
+    <div class="boardcard">
+        <div class="comp-card"></div>
+        <span class="comp-counter"></span>
+    </div>
+
+    <div class="boardcard">
+        <div class="card"></div>
+        <span class="play-counter"></span>
+    </div>
+    <p class="let-set-coin"></p>
+    <p class="set-coin"></p>
+
+    <div class="flex">
+        <span class="coin coin--10" data-coin="10"></span>
+        <span class="coin coin--50" data-coin="50"></span>
+        <span class="coin coin--100" data-coin="100"></span>
+        <span class="coin coin--1000" data-coin="1000"></span>
+        <span class="coin coin--5000" data-coin="5000"></span>
+        <span class="coin allin" data-coin="all-in"></span>
+    </div>
+
+    <button class="button del">Bỏ</button>
+    <button class="button replay">Chơi tiếp</button>
+
+
+    <script src="../assets/js/jquery-3.4.1.js"></script>
+    <script src="./js/app.js"></script>
+
+</body>
+
+</html>

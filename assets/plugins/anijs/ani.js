@@ -6,10 +6,14 @@ const AniInit = () => {
     const AniWave = $(".ani.wave");
     if (AniWave.length < 1) return;
     AniWave.map((a, b) => {
-        let _html = $(b).text().replace(/\s+/g, '').split("");
+        let _html = $(b).text().replace(/\s+/g, '').split(""),
+            _data_ani = $(b).attr("data-ani");
+
         _html = _html.map((val, ind) =>
-            `<span style="transition-delay:${ind*0.02}s">${val}</span>`
+            `<span style="transition-delay:${ind*0.05}s">${val}</span>`
         ).join("");
+
+        $(b).addClass(_data_ani);
         $(b).html(_html);
     });
 }

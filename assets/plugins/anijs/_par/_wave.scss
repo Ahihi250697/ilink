@@ -1,17 +1,28 @@
 .wave {
-    overflow: hidden;
 
     >span {
-        color: yellow;
+        color: pink;
         opacity: 0;
-        transform: translateY(100%);
-        transition-duration: 0.3s;
+        transition-duration: 0.5s;
         display: inline-block;
+    }
+
+    &.wave-up {
+        >span {
+            transform: translateY(100%);
+        }
+    }
+
+    &.wave-fall-down {
+        >span {
+            transform: translateY(-100px);
+            transition-duration: 0.05s;
+        }
     }
 
     &.animated {
         >span {
-            color: blue;
+            color: deeppink;
             opacity: 1;
             transform: translateY(0);
         }
