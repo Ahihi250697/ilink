@@ -2,14 +2,10 @@
 
 let TotalCoin = 1000,
     SetCoin = 10,
-    TotalTurn = 5,
-    CanAddCoin = 3,
-    WinRate = 0,
-    WinCounter = 0;
+    TotalTurn = 5;
 
 const PrtTotalCoin = $(".total-coin"),
-    PrtSetCoin = $(".set-coin"),
-    PrtWinRate = $(".win-rate");
+    PrtSetCoin = $(".set-coin");
 
 const Card = [];
 let CardClone = [];
@@ -90,19 +86,7 @@ const Draw = (w) => {
     let _rd = RandomCard();
     CreateCard(_rd, w);
 }
-// nạp tiền
-const AddCoin = $(".add-coin");
-AddCoin.on("click", function () {
-    if (CanAddCoin > 0) {
-        CanAddCoin--;
-        TotalCoin += 100000;
-        PrintHTML(PrtTotalCoin, TotalCoin);
-        PrintHTML(AddCoin, CanAddCoin);
-    } else {
-        PrintNoti("not-add");
-    }
 
-});
 // đặt tiền
 const Coins = $(".coin");
 Coins.on("click", function () {
@@ -272,7 +256,7 @@ const BoardCard = {
     CardType: '1 2 3 4'.split(" "),
     Time: $(".timer"),
     TimeCounter: 5,
-    TimeStep: 1000,
+    TimeStep: 500,
 
     // let set coin
     LetSetCoin: $(".let-set-coin"),
@@ -308,7 +292,6 @@ const BoardCard = {
             if (_playerPoint > _compPoint) {
                 TotalCoin += 1.95 * SetCoin;
                 console.info("player win");
-                WinCounter++;
                 $(".comp-card").addClass("lose");
             } else if (_playerPoint === _compPoint) {
                 TotalCoin += 0.95 * SetCoin;
@@ -320,14 +303,8 @@ const BoardCard = {
 
             // lose
             SetCoin = 0;
-            TotalCoin = TotalCoin.toFixed(2);
             PrintHTML(PrtTotalCoin, TotalCoin);
             PrintHTML(PrtSetCoin, SetCoin);
-
-            // winrate
-            let _winRate = `${(100*WinCounter/WinRate).toFixed(2)}% (${WinCounter}/${WinRate})`;
-            PrintHTML(PrtWinRate, _winRate);
-
             return false;
         }
 
@@ -357,20 +334,12 @@ const BoardCard = {
     },
     // start
     GameStart: function () {
-        if (TotalCoin < 10) {
-            PrintNoti("not-enought");
-            return false;
-        }
         console.warn("--- start game ---");
         TotalTurn = 5;
         SetCoin = 10;
         TotalCoin -= SetCoin;
-        WinRate++;
-
         PrintHTML(PrtTotalCoin, TotalCoin);
         PrintHTML(PrtSetCoin, SetCoin);
-
-        PrintHTML(AddCoin, CanAddCoin);
 
         LocalStorage("set", "set-coin", "true");
         this.CountDown(this.TimeCounter);

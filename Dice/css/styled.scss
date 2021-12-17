@@ -13,7 +13,6 @@ body {
     padding-top: 60px;
     max-width: 640px;
     margin: 0 auto;
-    background-color: #fef;
 }
 
 .timer {
@@ -56,44 +55,35 @@ body {
 
         &::before {
             position: absolute;
-            z-index: 100;
             top: 0;
             left: 0;
             font-size: 24px;
             font-weight: 700;
             color: #00bfff;
-            padding: 0 6px;
-            border-radius: 6px;
-            background-color: #fff;
-        }
-
-        &::after {
-            content: 'lose';
-            width: 250px;
-            max-width: 100%;
-            background-color: transparent;
-            color: #fff;
-            position: absolute;
-            font-size: 20px;
-            line-height: 1;
-            top: 50%;
-            left: 50%;
-            text-align: center;
-            transform: translate(-50%, -50%) scale(0, 1);
-            transition: all 0.5s ease;
+            padding: 0 4px;
+            border-bottom: 1px solid #00bfff;
         }
 
         &.lose {
             &::after {
-                transform: translate(-50%, -50%) scale(1, 1);
+                content: 'lose';
+                width: 250px;
+                max-width: 100%;
+                color: #fff;
+                position: absolute;
+                font-size: 20px;
+                line-height: 1;
+                top: 50%;
+                left: 50%;
+                text-align: center;
                 background-color: rgba(0, 0, 0, 0.4);
+                transform: translate(-50%, -50%);
             }
         }
 
         >.card__item {
             width: 60px;
             height: 60px;
-            background-color: #fff;
             border: 2px solid #aaa;
             border-bottom: 0;
             border-radius: 4px 4px 0 0;
@@ -103,7 +93,7 @@ body {
             align-items: center;
             justify-content: center;
             transform: translateY(100%);
-            animation: kf_card_up 0.5s ease 0s 1 both;
+            animation: kf_card_up 1s ease 0s 1 both;
 
             &.active {
                 border-width: 3px;
@@ -223,12 +213,6 @@ body {
         }
     }
 
-    &.not-add {
-        &::before {
-            content: 'hết được nạp rồi';
-        }
-    }
-
     &.cant {
         &::before {
             content: 'Không thể hành động';
@@ -278,76 +262,19 @@ body {
     }
 }
 
-.add-coin {
-    position: fixed;
-    width: 70px;
-    height: 40px;
-    top: 5px;
-    right: 5px;
-    border: 1px solid #00bfff;
-    background-color: #fff;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: #00bfff;
-    font-size: 22px;
-
-    &::before {
-        content: "Nạp";
-        font-size: 18px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #fff;
-    }
-
-    &:hover,
-    &.active {
-        &::before {
-            position: static;
-            transform: translate(0%, 0%);
-            margin-right: 4px;
-        }
-    }
-}
-
-.win-rate {
-    text-align: center;
-    color: #00bfff;
-    margin-top: 20px;
-    font-size: 25px;
-
-    &::before {
-        content: "Tỉ lệ thắng";
-        font-size: 16px;
-        margin-right: 4px;
-    }
-}
-
 .let-set-coin {
     text-align: center;
     font-size: 20px;
     color: #00bfff;
-    font-weight: 700;
     margin-top: 40px;
-    border: 1px solid #aaa;
-    padding: 4px;
-    border-radius: 6px;
 
     &::before {
         content: 'hãy đặt tiền';
     }
 
     &.none {
-        color: #fff;
-        background-color: red;
-
-
         &::before {
-            content: 'không được đặt';
+            content: 'không được đặt tiền';
         }
     }
 }
