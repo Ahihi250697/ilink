@@ -271,7 +271,7 @@ const BoardCard = {
     CardList: '1 2 3 4 5 6 7 8 9 10 11 12 13'.split(" "),
     CardType: '1 2 3 4'.split(" "),
     Time: $(".timer"),
-    TimeCounter: 5,
+    TimeCounter: 3,
     TimeStep: 1000,
 
     // let set coin
@@ -320,8 +320,8 @@ const BoardCard = {
 
             // lose
             SetCoin = 0;
-            TotalCoin = TotalCoin.toFixed(2);
-            PrintHTML(PrtTotalCoin, TotalCoin);
+            let _totalCoin = TotalCoin.toFixed(2);
+            PrintHTML(PrtTotalCoin, _totalCoin);
             PrintHTML(PrtSetCoin, SetCoin);
 
             // winrate
