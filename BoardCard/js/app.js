@@ -4,12 +4,12 @@ let TotalCoin = 1000,
     SetCoin = 10,
     TotalTurn = 5,
     CanAddCoin = 3,
-    WinRate = 0,
-    WinCounter = 0;
+    CanChooseBlock = true,
+    ChooseBlock = "";
 
 const PrtTotalCoin = $(".total-coin"),
     PrtSetCoin = $(".set-coin"),
-    PrtWinRate = $(".win-rate");
+    PrtWinCheck = $(".board-check");
 
 const Card = [];
 let CardClone = [];
@@ -110,6 +110,11 @@ Coins.on("click", function () {
         LocalStorage("get", "set-is-playing", "false") === "false") {
         PrintNoti("not-time");
         return false;
+    }
+    if (ChooseBlock === "") {
+        ChooseBlock = 1;
+        CanChooseBlock = false;
+        $(".block-comp").addClass("active");
     }
     const CoinValue = $(this).attr("data-coin");
     if (CoinValue === "all-in") {
@@ -265,6 +270,22 @@ Del.on("click", function () {
 
     BoardCard.GameReset();
 });
+
+// win check
+const WinCheck = (e) => {
+    PrtWinCheck.append(`<span class="${e}"></span>`);
+}
+
+// chọn nhà cái
+const Block = $(".block");
+Block.on("click", function () {
+    if (!CanChooseBlock) return;
+
+    let _b = $(this).attr("data-block");
+    $(this).addClass("active");
+    ChooseBlock = _b;
+    CanChooseBlock = false;
+});
 // game
 let Timeout;
 const BoardCard = {
@@ -272,7 +293,7 @@ const BoardCard = {
     CardType: '1 2 3 4'.split(" "),
     Time: $(".timer"),
     TimeCounter: 3,
-    TimeStep: 1000,
+    TimeStep: 200,
 
     // let set coin
     LetSetCoin: $(".let-set-coin"),
@@ -304,17 +325,28 @@ const BoardCard = {
             console.log("comp point", _compPoint);
             let _playerPoint = CardCheck(CardPlayer);
             console.log("player point", _playerPoint);
-            // win
+
+            console.log("block ne", ChooseBlock);
+            // player win
             if (_playerPoint > _compPoint) {
-                TotalCoin += 1.95 * SetCoin;
-                console.info("player win");
-                WinCounter++;
+                if (ChooseBlock == "2") {
+                    TotalCoin += 1.95 * SetCoin;
+                }
+                WinCheck("lose");
                 $(".comp-card").addClass("lose");
-            } else if (_playerPoint === _compPoint) {
+            }
+            // hoa
+            if (_playerPoint === _compPoint) {
                 TotalCoin += 0.95 * SetCoin;
                 console.info("--hoa--");
-            } else {
-                console.info("comp win");
+                WinCheck("equal");
+            }
+            // comp win
+            if (_playerPoint < _compPoint) {
+                if (ChooseBlock == "1") {
+                    TotalCoin += 2 * SetCoin;
+                }
+                WinCheck("win");
                 $(".card").addClass("lose");
             }
 
@@ -323,10 +355,6 @@ const BoardCard = {
             let _totalCoin = TotalCoin.toFixed(2);
             PrintHTML(PrtTotalCoin, _totalCoin);
             PrintHTML(PrtSetCoin, SetCoin);
-
-            // winrate
-            let _winRate = `${(100*WinCounter/WinRate).toFixed(2)}% (${WinCounter}/${WinRate})`;
-            PrintHTML(PrtWinRate, _winRate);
 
             return false;
         }
@@ -355,6 +383,7 @@ const BoardCard = {
             }
         }
     },
+
     // start
     GameStart: function () {
         if (TotalCoin < 10) {
@@ -365,7 +394,7 @@ const BoardCard = {
         TotalTurn = 5;
         SetCoin = 10;
         TotalCoin -= SetCoin;
-        WinRate++;
+
 
         PrintHTML(PrtTotalCoin, TotalCoin);
         PrintHTML(PrtSetCoin, SetCoin);
@@ -402,6 +431,11 @@ const BoardCard = {
         CardPlayer.length = 0;
         CardComp.length = 0;
         clearTimeout(Timeout);
+
+        //block
+        CanChooseBlock = true;
+        ChooseBlock = "";
+        Block.removeClass("active");
         // restart
         this.GameStart();
     },

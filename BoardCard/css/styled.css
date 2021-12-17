@@ -14,7 +14,6 @@ body {
   padding-top: 60px;
   max-width: 640px;
   margin: 0 auto;
-  background-color: #fef;
 }
 
 .timer {
@@ -190,11 +189,14 @@ body {
 }
 .noti {
   position: fixed;
-  right: 0;
+  left: 50%;
   top: 100px;
   background-color: #00bfff;
   padding: 4px 10px;
   border-radius: 8px;
+  transform: translate(-50%, 0);
+  max-width: 100%;
+  min-width: 200px;
   color: #fff;
   animation: kf_noti 1s ease 0s 1 both;
 }
@@ -274,18 +276,6 @@ body {
   margin-right: 4px;
 }
 
-.win-rate {
-  text-align: center;
-  color: #00bfff;
-  margin-top: 20px;
-  font-size: 25px;
-}
-.win-rate::before {
-  content: "Tỉ lệ thắng";
-  font-size: 16px;
-  margin-right: 4px;
-}
-
 .let-set-coin {
   text-align: center;
   font-size: 20px;
@@ -336,6 +326,34 @@ body {
 }
 .flex .button {
   width: calc(50% - 10px);
+}
+
+.block {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid #aaa;
+  cursor: pointer;
+  color: #aaa;
+}
+.block::before {
+  font-size: 30px;
+  font-weight: 700;
+}
+.block.block-comp::before {
+  content: "Cái";
+}
+.block.block-con::before {
+  content: "Con";
+}
+.block.active {
+  background-color: #00bfff;
+}
+.block.active::before {
+  color: #fff;
 }
 
 .button {
@@ -402,6 +420,26 @@ body {
     width: calc(33% - 10px);
     margin-top: 20px;
   }
+}
+
+.board-check {
+  display: flex;
+  flex-wrap: wrap;
+}
+.board-check span {
+  width: 20px;
+  height: 20px;
+  border-radius: 99px;
+  margin: 3px;
+}
+.board-check span.win {
+  background-color: green;
+}
+.board-check span.lose {
+  background-color: red;
+}
+.board-check span.equal {
+  background-color: yellow;
 }
 
 /*# sourceMappingURL=styled.css.map */
