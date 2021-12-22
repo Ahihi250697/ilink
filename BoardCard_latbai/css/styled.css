@@ -1,0 +1,139 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  line-height: 1.15;
+  font-family: "Courier New", Courier, monospace;
+}
+
+body {
+  padding: 20px;
+}
+
+input[type=number] {
+  width: 70px;
+  padding: 6px 10px;
+  font-size: 14px;
+  color: #333;
+  font-weight: 600;
+  border: 1px solid #aaa;
+  outline: none;
+  border-radius: 4px;
+}
+
+.start-with {
+  width: 150px;
+  height: 30px;
+  border-radius: 4px;
+  display: flex;
+  font-size: 12px;
+  color: #fff;
+  background-color: #00bfff;
+  border: 1px solid #00bfff;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.start-with::after {
+  content: "start with";
+}
+
+.current-level {
+  width: 100%;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  position: relative;
+  display: block;
+  margin-top: 40px;
+}
+.current-level::before {
+  content: "current level: ";
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.click-counter {
+  width: 100%;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  position: relative;
+  display: block;
+}
+.click-counter::before {
+  content: "click counter: ";
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.gamescreen {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+  position: relative;
+}
+.gamescreen > .span {
+  min-width: 130px;
+  font-size: 14px;
+  text-align: right;
+  padding-right: 30px;
+}
+.gamescreen .min-screen {
+  font-size: 12px;
+  color: red;
+  font-weight: 600;
+  position: absolute;
+  bottom: -30px;
+  left: 130px;
+}
+
+.paper {
+  width: 252px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 4px;
+  position: relative;
+  margin-top: 40px;
+}
+.paper > .paper__item {
+  width: 50px;
+  height: 50px;
+  background-color: gray;
+  border: 1px solid gray;
+  border-radius: 4px;
+  margin: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #333;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s linear;
+  position: relative;
+  color: #fff;
+}
+.paper > .paper__item::after {
+  content: attr(data-content);
+  position: absolute;
+  font-size: 16px;
+  font-weight: 600;
+}
+.paper > .paper__item:hover {
+  background-color: #00bfff;
+}
+.paper > .paper__item.active {
+  cursor: not-allowed;
+  background-color: #00bfff;
+}
+.paper > .paper__item.is-open {
+  color: #00bfff;
+  background-color: #fff;
+  border-color: #00bfff;
+}
+
+/*# sourceMappingURL=styled.css.map */
