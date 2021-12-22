@@ -1,0 +1,319 @@
+* {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 1.15;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: -1px;
+}
+
+$c_main : #00bfff;
+
+body {
+    padding: 0 10px;
+}
+
+.boardcard {
+    width: 1024px;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-top: 30px;
+
+    .block {
+        width: 100%;
+        max-width: calc(50% - 15px);
+    }
+
+    .card {
+        width: 60px;
+        height: 80px;
+        position: relative;
+        border: 1px solid $c_main;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        margin: 4px;
+        color: $c_main;
+        font-size: 32px;
+        font-weight: 700;
+        opacity: 0;
+        transform: translate3d(20px, 0, 0);
+        animation: kf_card_create 1s ease 0s 1 both;
+
+        &::before,
+        &::after {
+            position: absolute;
+            color: inherit;
+            line-height: 1;
+            font-weight: 600;
+
+        }
+
+        &::before {
+            content: '';
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            background-color: $c_main;
+            transform-origin: bottom;
+            transform: scale(1, 0);
+            transition: transform 0.4s linear;
+        }
+
+        &::after {
+            top: 2px;
+            right: 4px;
+            font-size: 20px;
+        }
+
+        &.hearts {
+            // color: red;
+
+            &::after {
+                content: "♥";
+            }
+        }
+
+        &.diamonds {
+            // color: red;
+
+            &::after {
+                content: "♦";
+            }
+        }
+
+        &.clubs {
+            // color: #333;
+
+            &::after {
+                content: "♣";
+            }
+        }
+
+        &.spades {
+            // color: #333;
+
+            &::after {
+                content: "♠";
+            }
+        }
+
+        &.null {
+            &::before {
+                transform: scale(1, 1);
+            }
+        }
+
+        &.active {
+            border-width: 3px;
+            transform: scale(1.1);
+        }
+    }
+
+    .boardcard-dealer,
+    .boardcard-player {
+        width: 100%;
+        min-height: 100px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+
+    @media only screen and (max-width: 420px) {
+        .block {
+            max-width: 100%;
+        }
+
+        .card {
+            width: 52px;
+            height: 70px;
+        }
+
+        .boardcard-player {
+            margin-top: 10px;
+            border-top: 1px solid $c_main;
+            padding-top: 10px;
+        }
+    }
+}
+
+@keyframes kf_card_create {
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.button {
+    width: 160px;
+    height: 50px;
+    margin-top: 10px;
+    position: relative;
+    color: $c_main;
+    background-color: #fff;
+    font-size: 16px;
+    border: 1px solid $c_main;
+    border-radius: 6px;
+    cursor: pointer;
+    display: block;
+    transition: all 0.4s ease;
+
+    &:hover,
+    &.active {
+        background-color: $c_main;
+        color: #fff;
+    }
+
+    &::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+    }
+
+    &.draw {
+        &::after {
+            content: 'rút bài';
+        }
+    }
+
+    &.draw-end {
+        &::after {
+            content: 'dằn';
+        }
+    }
+
+    &.draw-off {
+        &::after {
+            content: 'bỏ';
+        }
+    }
+
+    &.play-game {
+        width: 200px;
+        margin: 0 auto;
+        margin-top: 20px;
+
+        &::after {
+            content: 'Play';
+        }
+    }
+
+    @media only screen and (max-width: 420px) {}
+}
+
+.flex-block {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 8px;
+
+    >.button {
+        max-width: calc(33% - 2px);
+    }
+
+    >.coin {
+        width: 100%;
+        max-width: calc(33% - 4px);
+        height: 60px;
+        margin-top: 4px;
+        border: 1px solid $c_main;
+        border-radius: 4px;
+        position: relative;
+        background-color: #fff;
+        color: $c_main;
+        cursor: pointer;
+        transition: all 0.4s ease;
+
+        &:hover {
+            color: #fff;
+            background-color: $c_main;
+        }
+
+        &::after {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+        }
+
+        &.coin--10 {
+            &::after {
+                content: '10';
+            }
+        }
+
+        &.coin--20 {
+            &::after {
+                content: '20';
+            }
+        }
+
+        &.coin--50 {
+            &::after {
+                content: '50';
+            }
+        }
+
+        &.coin--100 {
+            &::after {
+                content: '100';
+            }
+        }
+
+        &.coin--500 {
+            &::after {
+                content: '500';
+            }
+        }
+
+        &.allin {
+            &::after {
+                content: 'all in';
+            }
+        }
+    }
+
+    >.coin-value {
+        font-size: 26px;
+        color: $c_main;
+        text-align: center;
+        font-weight: 700;
+        margin-top: 20px;
+
+        &::before {
+            content: "tài sản: ";
+            font-size: 16px;
+        }
+    }
+
+    >.set-coin {
+        width: 100%;
+        font-size: 26px;
+        color: $c_main;
+        text-align: center;
+        font-weight: 700;
+
+        &::before {
+            content: "đặt cược: ";
+            font-size: 16px;
+        }
+    }
+
+    @media only screen and (max-width: 420px) {
+        .coin {}
+    }
+}

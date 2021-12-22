@@ -2,10 +2,14 @@
 
 let TotalCoin = 1000,
     SetCoin = 10,
-    TotalTurn = 5;
+    TotalTurn = 5,
+    CanAddCoin = 3,
+    CanChooseBlock = true,
+    ChooseBlock = "";
 
 const PrtTotalCoin = $(".total-coin"),
-    PrtSetCoin = $(".set-coin");
+    PrtSetCoin = $(".set-coin"),
+    PrtWinCheck = $(".board-check");
 
 const Card = [];
 let CardClone = [];
@@ -86,7 +90,19 @@ const Draw = (w) => {
     let _rd = RandomCard();
     CreateCard(_rd, w);
 }
+// nạp tiền
+const AddCoin = $(".add-coin");
+AddCoin.on("click", function () {
+    if (CanAddCoin > 0) {
+        CanAddCoin--;
+        TotalCoin += 100000;
+        PrintHTML(PrtTotalCoin, TotalCoin);
+        PrintHTML(AddCoin, CanAddCoin);
+    } else {
+        PrintNoti("not-add");
+    }
 
+});
 // đặt tiền
 const Coins = $(".coin");
 Coins.on("click", function () {
@@ -94,6 +110,11 @@ Coins.on("click", function () {
         LocalStorage("get", "set-is-playing", "false") === "false") {
         PrintNoti("not-time");
         return false;
+    }
+    if (ChooseBlock === "") {
+        ChooseBlock = 1;
+        CanChooseBlock = false;
+        $(".block-comp").addClass("active");
     }
     const CoinValue = $(this).attr("data-coin");
     if (CoinValue === "all-in") {
@@ -249,14 +270,30 @@ Del.on("click", function () {
 
     BoardCard.GameReset();
 });
+
+// win check
+const WinCheck = (e) => {
+    PrtWinCheck.append(`<span class="${e}"></span>`);
+}
+
+// chọn nhà cái
+const Block = $(".block");
+Block.on("click", function () {
+    if (!CanChooseBlock) return;
+
+    let _b = $(this).attr("data-block");
+    $(this).addClass("active");
+    ChooseBlock = _b;
+    CanChooseBlock = false;
+});
 // game
 let Timeout;
 const BoardCard = {
     CardList: '1 2 3 4 5 6 7 8 9 10 11 12 13'.split(" "),
     CardType: '1 2 3 4'.split(" "),
     Time: $(".timer"),
-    TimeCounter: 5,
-    TimeStep: 500,
+    TimeCounter: 3,
+    TimeStep: 1000,
 
     // let set coin
     LetSetCoin: $(".let-set-coin"),
@@ -288,23 +325,37 @@ const BoardCard = {
             console.log("comp point", _compPoint);
             let _playerPoint = CardCheck(CardPlayer);
             console.log("player point", _playerPoint);
-            // win
+
+            console.log("block ne", ChooseBlock);
+            // player win
             if (_playerPoint > _compPoint) {
-                TotalCoin += 1.95 * SetCoin;
-                console.info("player win");
+                if (ChooseBlock == "2") {
+                    TotalCoin += 1.95 * SetCoin;
+                }
+                WinCheck("lose");
                 $(".comp-card").addClass("lose");
-            } else if (_playerPoint === _compPoint) {
+            }
+            // hoa
+            if (_playerPoint === _compPoint) {
                 TotalCoin += 0.95 * SetCoin;
                 console.info("--hoa--");
-            } else {
-                console.info("comp win");
+                WinCheck("equal");
+            }
+            // comp win
+            if (_playerPoint < _compPoint) {
+                if (ChooseBlock == "1") {
+                    TotalCoin += 2 * SetCoin;
+                }
+                WinCheck("win");
                 $(".card").addClass("lose");
             }
 
             // lose
             SetCoin = 0;
-            PrintHTML(PrtTotalCoin, TotalCoin);
+            let _totalCoin = TotalCoin.toFixed(2);
+            PrintHTML(PrtTotalCoin, _totalCoin);
             PrintHTML(PrtSetCoin, SetCoin);
+
             return false;
         }
 
@@ -332,14 +383,23 @@ const BoardCard = {
             }
         }
     },
+
     // start
     GameStart: function () {
+        if (TotalCoin < 10) {
+            PrintNoti("not-enought");
+            return false;
+        }
         console.warn("--- start game ---");
         TotalTurn = 5;
         SetCoin = 10;
         TotalCoin -= SetCoin;
+
+
         PrintHTML(PrtTotalCoin, TotalCoin);
         PrintHTML(PrtSetCoin, SetCoin);
+
+        PrintHTML(AddCoin, CanAddCoin);
 
         LocalStorage("set", "set-coin", "true");
         this.CountDown(this.TimeCounter);
@@ -371,6 +431,11 @@ const BoardCard = {
         CardPlayer.length = 0;
         CardComp.length = 0;
         clearTimeout(Timeout);
+
+        //block
+        CanChooseBlock = true;
+        ChooseBlock = "";
+        Block.removeClass("active");
         // restart
         this.GameStart();
     },
