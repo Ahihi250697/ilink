@@ -61,58 +61,100 @@ const Game = {
         console.log("--- create slot ---");
     },
 
+    GameSlotsPush: function (e) {
+        let _item = {
+            value: this.GameArray[e],
+            active: false
+        }
+        this.Slots.push(_item);
+        this.Slots.push(_item);
+    },
+
+    GameSlotsShuffle: function () {
+        this.Slots.sort(() => Math.random() - 0.5);
+    },
+
     GameCreateArraySlot: function () {
         let _max = this.Level;
         switch (this.GameMode) {
             case 0: {
                 console.log("---easy---");
-                _max = 4;
+                _max = this.GameDefault[0];
+                for (let _i = 0; _i < _max; _i++) {
+                    let _rd = Math.floor(Math.random() * _max);
+                    this.GameSlotsPush(_rd);
+                }
                 break;
             }
 
             case 1: {
                 console.log("--- medium ---");
-                _max = 10;
+                _max = this.GameDefault[1];
+                for (let _i = 0; _i < _max; _i++) {
+                    let _rd = Math.floor(Math.random() * _max);
+                    this.GameSlotsPush(_rd);
+                }
                 break;
             }
 
             case 2: {
                 console.log("--- hard ---");
-                _max = 30;
+                _max = this.GameDefault[2];
+                for (let _i = 0; _i < _max; _i++) {
+                    let _rd = Math.floor(Math.random() * _max);
+                    this.GameSlotsPush(_rd);
+                }
                 break;
             }
             case 3: {
                 console.log("--- super hard ---");
-                _max = 60;
+                _max = this.GameDefault[3];
+                for (let _i = 0; _i < _max; _i++) {
+                    this.GameSlotsPush(_i);
+                }
                 break;
             }
             case 4: {
                 console.log("--- hell ---");
-                _max = 40;
+                _max = this.GameDefault[4];
+                for (let _i = 0; _i < _max; _i++) {
+                    this.GameSlotsPush(_i);
+                }
+                break;
+            }
+
+            default: {
+                for (let _i = 0; _i < _max; _i++) {
+                    let _rd = Math.floor(Math.random() * _max);
+                    this.GameSlotsPush(_rd);
+                }
                 break;
             }
         }
         this.CounterTrue = _max;
-        for (let _i = 0; _i < _max; _i++) {
-            let _rd = Math.floor(Math.random() * this.GameArray.length);
-            this.Slots.push(this.GameArray[_rd]);
-            this.Slots.push(this.GameArray[_rd]);
-        }
+        // for (let _i = 0; _i < _max; _i++) {
+        //     let _rd = Math.floor(Math.random() * this.GameArray.length);
+        //     this.Slots.push(this.GameArray[_rd]);
+        //     this.Slots.push(this.GameArray[_rd]);
+        // }
 
-        this.Slots.sort(() => Math.random() - 0.5);
+        this.GameSlotsShuffle();
         this.GameCreateSlots(this.Slots);
         console.log("--- create array slot---");
     },
 
     GameCreateMode: function () {
-        console.log("game mode", this.GameMode)
+        console.log("game mode", this.GameMode);
+
     },
 
     CheckOpen: function () {
         let _a1 = this.Slots[this.IsOpenID[0]],
             _a2 = this.Slots[this.IsOpenID[1]];
 
-        if (_a1 === _a2) {
+        if (_a1.value === _a2.value) {
+            _a1.active = true;
+            _a2.active = true;
             return true;
         }
         return false;
@@ -141,6 +183,18 @@ const Game = {
         });
     },
 
+    GameHell: function () {
+        this.GameSlotsShuffle();
+        console.log(this.Slots);
+        this.Slots.map((a, b) => a.active ? (
+            this.SlotsItem.eq(b).attr("data-content", a.value),
+            this.SlotsItem.eq(b).addClass("is-open")
+        ) : (
+            this.SlotsItem.eq(b).attr("data-content", ""),
+            this.SlotsItem.eq(b).removeClass("active is-open")
+        ))
+    },
+
     CheckClick: function (e) {
         if (!this.CanChooseSlot) {
             console.log(this.IsOpenID)
@@ -151,7 +205,7 @@ const Game = {
             this.IsOpenID.push(e);
 
             // lật bài
-            let _value = this.Slots[e];
+            let _value = this.Slots[e].value;
             this.SlotsItem.eq(e).attr("data-content", _value);
 
             // tăng lượt click
@@ -170,6 +224,7 @@ const Game = {
                         fn_type: true,
                         timer: 1
                     });
+
                     this.CounterTrue--;
                     if (this.CounterTrue <= 0) {
                         this.GameUpdate();
@@ -183,31 +238,6 @@ const Game = {
                     this.CounterClick++;
                     this.HTMLClickCounter.html(this.CounterClick);
 
-                    switch (this.GameMode) {
-
-                        case 0: {
-                            console.log("---easy---");
-                            break;
-                        }
-
-                        case 1: {
-                            console.log("--- medium ---");
-                            break;
-                        }
-
-                        case 2: {
-                            console.log("--- hard ---");
-                            break;
-                        }
-                        case 3: {
-                            console.log("--- super hard ---");
-                            break;
-                        }
-                        case 4: {
-                            console.log("--- hell ---");
-                            break;
-                        }
-                    }
                     // reset click
                     this.GameCounter({
                         fn: "reset",
@@ -232,6 +262,14 @@ const Game = {
             this.IsOpenID.map(a => {
                 this.SlotsItem.eq(a).addClass("is-open");
             });
+            switch (this.GameMode) {
+                case 4: {
+                    console.log("--- hell ---");
+                    this.GameHell();
+
+                    break;
+                }
+            }
         }
         // reset click
         this.IsOpenID.length = 0;
@@ -253,7 +291,8 @@ const Game = {
 
             switch (act.fn) {
                 case "reset": {
-                    return this.TurnReset(act.fn_type);
+                    this.TurnReset(act.fn_type);
+                    return false;
                 }
                 case "start": {
                     return this.GameStart();
