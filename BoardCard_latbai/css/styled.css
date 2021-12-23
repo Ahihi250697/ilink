@@ -9,7 +9,7 @@
 }
 
 body {
-  padding: 20px;
+  padding: 20px 4px;
 }
 
 input[type=number] {
@@ -47,7 +47,7 @@ input[type=number] {
   color: #333;
   position: relative;
   display: block;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 .current-level::before {
   content: "current level: ";
@@ -92,7 +92,7 @@ input[type=number] {
 }
 
 .paper {
-  width: 252px;
+  max-width: 100%;
   display: flex;
   flex-wrap: wrap;
   border-radius: 4px;
@@ -134,6 +134,93 @@ input[type=number] {
   color: #00bfff;
   background-color: #fff;
   border-color: #00bfff;
+}
+
+.game-mode {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.game-mode > .mode {
+  width: calc(33% - 4px);
+  height: 40px;
+  border-radius: 4px;
+  border: 2px solid #00bfff;
+  color: #00bfff;
+  background-color: #fff;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+.game-mode > .mode::after {
+  font-size: 14px;
+  font-weight: 500;
+}
+.game-mode > .mode.none::after {
+  content: "null";
+}
+.game-mode > .mode.easy::after {
+  content: "easy";
+}
+.game-mode > .mode.medium::after {
+  content: "medium";
+}
+.game-mode > .mode.hard::after {
+  content: "hard";
+}
+.game-mode > .mode.super-hard::after {
+  content: "super hard";
+}
+.game-mode > .mode.hell::after {
+  content: "hell";
+}
+.game-mode > .mode:hover, .game-mode > .mode.active {
+  color: #fff;
+  background-color: #00bfff;
+}
+
+.mouse-effect {
+  position: fixed;
+  z-index: 999;
+  top: 100px;
+  left: 100px;
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  user-select: none;
+  pointer-events: none;
+}
+.mouse-effect::after, .mouse-effect::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  border: 2px solid #00bfff;
+}
+.mouse-effect::after {
+  animation: kf_mouse_effect 0.5s ease 0s 1 both;
+}
+.mouse-effect::before {
+  animation: kf_mouse_effect 0.6s ease 0.2s 1 both;
+}
+
+@keyframes kf_mouse_effect {
+  0% {
+    transform: translate(-50%, -50%) scale(0, 0);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2.5, 2.5);
+  }
 }
 
 /*# sourceMappingURL=styled.css.map */

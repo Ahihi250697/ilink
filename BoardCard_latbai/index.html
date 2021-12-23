@@ -13,17 +13,26 @@
 
 <body>
     <div id="root">
-        <div style="display: flex; max-width: 320px;">
+        <div class="game-mode">
+            <span class="mode none" data-mode=-1></span>
+            <span class="mode easy" data-mode=0></span>
+            <span class="mode medium" data-mode=1></span>
+            <span class="mode hard" data-mode=2></span>
+            <span class="mode super-hard" data-mode=3></span>
+            <span class="mode hell" data-mode=4></span>
+        </div>
+        <div style="display: flex; max-width: 320px; margin-top: 40px;">
             <label class="gamescreen" for="game-screen">
                 <span class="span">
                     Game level:
                 </span>
 
-                <input type="number" id="game-screen">
-                <span class="min-screen">*min = 5<br />*max = 23</span>
+                <input type="number" id="game-screen" value="1">
+                <span class="min-screen">*min = 5<br />*max = 70</span>
             </label>
             <button class="start-with"></button>
         </div>
+
         <span class="current-level"></span>
         <span class="click-counter">0</span>
         <div class="paper">
@@ -32,7 +41,6 @@
             <span class="paper__item"></span>
             <span class="paper__item"></span>
             <span class="paper__item"></span>
-
         </div>
     </div>
     <script src="../assets/js/jquery-3.4.1.js"></script>
