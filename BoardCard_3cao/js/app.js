@@ -264,10 +264,6 @@ Replay.on("click", function () {
 // bỏ
 const Del = $(".del");
 Del.on("click", function () {
-    SetCoin = 10;
-
-    PrintHTML(PrtSetCoin, SetCoin);
-
     BoardCard.GameReset();
 });
 
@@ -334,12 +330,15 @@ const BoardCard = {
                 }
                 WinCheck("lose");
                 $(".comp-card").addClass("lose");
+                $(".card").addClass("win");
             }
             // hoa
             if (_playerPoint === _compPoint) {
                 TotalCoin += 0.95 * SetCoin;
                 console.info("--hoa--");
                 WinCheck("equal");
+                $(".comp-card").addClass("eqa");
+                $(".card").addClass("eqa");
             }
             // comp win
             if (_playerPoint < _compPoint) {
@@ -348,6 +347,7 @@ const BoardCard = {
                 }
                 WinCheck("win");
                 $(".card").addClass("lose");
+                $(".comp-card").addClass("win");
             }
 
             // lose
@@ -417,9 +417,9 @@ const BoardCard = {
 
         CardClone = [...Card];
         // card
-        $(".card").removeClass("lose");
+        $(".card").removeClass("lose win eqa");
         $(".card").find(".card__item").remove();
-        $(".comp-card").removeClass("lose");
+        $(".comp-card").removeClass("lose win eqa");
         $(".comp-card").find(".card__item").remove();
 
         // coins
