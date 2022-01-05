@@ -1,0 +1,26 @@
+.ani-type {
+
+    &::after {
+        content: '|';
+        color: #333;
+        display: inline-block;
+        animation: ani_wave_type_after 1.2s linear 0s infinite both;
+    }
+}
+
+
+@keyframes ani_wave_type_after {
+
+    0%,
+    40%,
+    80%,
+    100% {
+        opacity: 0;
+    }
+
+    20%,
+    60% {
+        opacity: 1;
+    }
+
+}

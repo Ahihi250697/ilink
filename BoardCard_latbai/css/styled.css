@@ -9,7 +9,40 @@
 }
 
 body {
-  padding: 20px 4px;
+  padding: 20px;
+  background-color: #555;
+  color: #aaa;
+}
+
+.mouse-effect-checkbox {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  background-color: #aaa;
+  position: relative;
+  cursor: pointer;
+}
+.mouse-effect-checkbox::after {
+  content: "";
+  width: 6px;
+  height: 12px;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  border-bottom: 4px solid #fff;
+  border-right: 4px solid #fff;
+  border-radius: 2px;
+  opacity: 0;
+}
+.mouse-effect-checkbox.checked {
+  background-color: #aaa;
+}
+.mouse-effect-checkbox.checked::after {
+  opacity: 1;
 }
 
 input[type=number] {
@@ -23,21 +56,26 @@ input[type=number] {
   border-radius: 4px;
 }
 
-.start-with {
-  width: 150px;
-  height: 30px;
-  border-radius: 4px;
-  display: flex;
-  font-size: 12px;
+.game-mode > .mode, .paper > .paper__item, .start-with {
+  width: 120px;
+  height: 40px;
   color: #fff;
-  background-color: #00bfff;
-  border: 1px solid #00bfff;
+  border-radius: 4px;
+  border: 1px solid #fff;
+  background-color: #aaa;
+  display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  transition: all 0.3s ease;
 }
-.start-with::after {
-  content: "start with";
+.game-mode > .mode:hover, .paper > .paper__item:hover, .start-with:hover, .game-mode > .active.mode, .paper > .active.paper__item, .active.start-with {
+  color: #aaa;
+  background-color: #fff;
+}
+
+.start-with {
+  margin-top: 40px;
+  cursor: pointer;
 }
 
 .current-level {
@@ -69,98 +107,45 @@ input[type=number] {
   font-weight: 400;
 }
 
-.gamescreen {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  margin-bottom: 4px;
-  position: relative;
-}
-.gamescreen > .span {
-  min-width: 130px;
-  font-size: 14px;
-  text-align: right;
-  padding-right: 30px;
-}
-.gamescreen .min-screen {
-  font-size: 12px;
-  color: red;
-  font-weight: 600;
-  position: absolute;
-  bottom: -30px;
-  left: 130px;
-}
-
 .paper {
   max-width: 100%;
   display: flex;
   flex-wrap: wrap;
-  border-radius: 4px;
   position: relative;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 .paper > .paper__item {
-  width: 50px;
-  height: 50px;
-  background-color: gray;
-  border: 1px solid gray;
-  border-radius: 4px;
-  margin: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  color: #333;
-  font-weight: 600;
+  width: 80px;
+  height: 80px;
+  background-color: #aaa;
+  margin: 4px;
+  font-size: 40px;
   cursor: pointer;
-  transition: all 0.2s linear;
   position: relative;
-  color: #fff;
 }
 .paper > .paper__item::after {
   content: attr(data-content);
   position: absolute;
-  font-size: 16px;
   font-weight: 600;
 }
-.paper > .paper__item:hover {
-  background-color: #00bfff;
-}
-.paper > .paper__item.active {
+.paper > .paper__item.active, .paper > .paper__item.is-open {
   cursor: not-allowed;
-  background-color: #00bfff;
-}
-.paper > .paper__item.is-open {
-  color: #00bfff;
-  background-color: #fff;
-  border-color: #00bfff;
+  color: #fff;
+  background-color: #555;
 }
 
 .game-mode {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 .game-mode > .mode {
-  width: calc(33% - 4px);
-  height: 40px;
-  border-radius: 4px;
-  border: 2px solid #00bfff;
-  color: #00bfff;
-  background-color: #fff;
-  margin-top: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  max-width: 32%;
+  margin: 4px;
   cursor: pointer;
-  transition: all 0.4s ease;
 }
 .game-mode > .mode::after {
   font-size: 14px;
   font-weight: 500;
-}
-.game-mode > .mode.none::after {
-  content: "null";
 }
 .game-mode > .mode.easy::after {
   content: "easy";
@@ -176,10 +161,6 @@ input[type=number] {
 }
 .game-mode > .mode.hell::after {
   content: "hell";
-}
-.game-mode > .mode:hover, .game-mode > .mode.active {
-  color: #fff;
-  background-color: #00bfff;
 }
 
 .mouse-effect {
@@ -203,7 +184,7 @@ input[type=number] {
   height: 100%;
   border-radius: 999px;
   transform: translate(-50%, -50%);
-  border: 2px solid #00bfff;
+  border: 2px solid #aaa;
 }
 .mouse-effect::after {
   animation: kf_mouse_effect 0.5s ease 0s 1 both;
@@ -220,6 +201,29 @@ input[type=number] {
   100% {
     opacity: 0;
     transform: translate(-50%, -50%) scale(2.5, 2.5);
+  }
+}
+.circle-hover,
+.circle-hover-effect {
+  width: 20px;
+  height: 20px;
+  background-color: #aaa;
+  border-radius: 99px;
+  position: fixed;
+  z-index: 1000;
+  display: block;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.circle-hover-effect {
+  animation: kf_fall_down_effect duration timing-function delay iteration-count direction fill-mode;
+}
+
+@keyframes kf_fall_down_effect {
+  to {
+    transform: translateY(100px);
   }
 }
 

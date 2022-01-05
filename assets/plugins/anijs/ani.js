@@ -1,65 +1,73 @@
-const Window_height = window.innerHeight;
-const Ani = $(".ani");
-const Time_delay = 0.15;
+const Ani = {
+    windowScreen: window.innerHeight * 0.95,
+    target: $(".ani"),
+    timeDelay: 0.15,
+    startDelay: 2000,
 
-const AniInit = () => {
-    const AniWave = $(".ani.wave");
-    if (AniWave.length < 1) return;
-    AniWave.map((a, b) => {
-        let _html = $(b).text().replace(/\s+/g, '').split(""),
-            _data_ani = $(b).attr("data-ani");
+    aniWave: function () {
+        const AniWave = $(".ani.wave");
+        if (AniWave.length < 1) return;
+        AniWave.map((a, b) => {
+            let _html = $(b).text().replace(/\s+/g, '').split("");
 
-        _html = _html.map((val, ind) =>
-            `<span style="transition-delay:${ind*0.05}s">${val}</span>`
-        ).join("");
+            _html = _html.map((val, ind) =>
+                `<span style="transition-delay:${ind*0.05}s">${val}</span>`
+            ).join("");
 
-        $(b).addClass(_data_ani);
-        $(b).html(_html);
-    });
-}
-AniInit();
+            $(b).html(_html);
+        });
+    },
 
-const AniAnimated = () => {
-    const CheckPos = (a, b, c) => {
-        let _top = a.offset().top;
-        // return true if it inside screen
-        return _top >= b && _top <= c;
-    };
+    aniAnimate: function () {
+        const CheckPos = (a, b, c) => {
+            // return true if it inside screen
+            return a >= b && a <= c;
+        };
+        let _a = 0, // time delay each other
+            _b = window.pageYOffset, // scroll top page
+            _c = _b + this.windowScreen; // scroll end page
 
-    let _delay = 0,
-        _pageY = window.pageYOffset,
-        _pageScreen = _pageY + Window_height * 0.95;
+        this.target.map((ind, val) => {
+            let _ = $(val);
+            if (!_.hasClass("ani-pass")) {
+                let _check = CheckPos(_.offset().top, _b, _c);
 
-    Ani.map((ind, val) => {
-        let _ = $(val);
-        if (!_.hasClass("ani-pass")) {
-            let _check = CheckPos(_, _pageY, _pageScreen);
+                if (_check) {
+                    // add class to check it is ready to show
+                    _.addClass("ani-pass");
+                    // set time out to add class animated
+                    let _set = setTimeout(() => {
+                        _.addClass("animated");
+                    }, _a * 1000);
+                    _a += this.timeDelay;
 
-            if (_check) {
-                // add class to check it is ready to show
-                _.addClass("ani-pass");
-                // set time out to add class animated
-                let _set = setTimeout(() => {
-                    _.addClass("animated");
-                }, _delay * 1000);
-                _delay += Time_delay;
-            } else if (_.offset().top < _pageY) {
-                // add class if it is on top screen position
-                _.addClass("ani-pass animated");
-                //_.addClass("");
+                } else if (_.offset().top < _b) {
+                    // add class if it is on top screen position
+                    _.addClass("ani-pass animated");
+                    //_.addClass("");
+                }
             }
-        }
-    });
-};
+        });
+    },
 
-let _scroll = true;
-$(window).on("load scroll", function () {
+    aniScroll: function () {
+        $(window).on("load scroll", () => {
+            if (this.startDelay === 0) {
+                this.aniAnimate();
+                this.startDelay = 100;
+            } else {
+                setTimeout(() => {
+                    this.startDelay = 0;
+                }, );
+            }
 
-    if (_scroll) {
-        AniAnimated();
-        _scroll = false;
-        setTimeout(function () {
-            _scroll = true;
-        }, 100);
+        });
+    },
+
+    init: function () {
+        this.aniWave();
+        this.aniScroll();
     }
-});
+}
+
+Ani.init();

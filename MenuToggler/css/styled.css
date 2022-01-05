@@ -81,7 +81,7 @@ button {
 }
 .nav-toggler.nav-toggler--01 span:nth-child(2) {
   opacity: 0;
-  transform: translate(100%, -1px) rotate(180deg);
+  transform: translate3d(100%, -1px, 0) rotate(180deg);
   transition: all 0.4s ease 0.2s;
 }
 .nav-toggler.nav-toggler--01 span:nth-child(2)::after {
@@ -106,7 +106,94 @@ button {
 }
 .nav-toggler.nav-toggler--01.open span:nth-child(2) {
   opacity: 1;
-  transform: translate(-50%, -1px) rotate(45deg);
+  transform: translate3d(-50%, -1px, 0) rotate(45deg);
+}
+.nav-toggler.nav-toggler--02 span {
+  width: 30px;
+  height: 2px;
+  background-color: #00bfff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+.nav-toggler.nav-toggler--02 span::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+.nav-toggler.nav-toggler--02 span:nth-child(1) {
+  transform: translate3d(-50%, -6px, 0);
+}
+.nav-toggler.nav-toggler--02 span:nth-child(1)::after {
+  transition: transform 0.4s ease 0.2s;
+}
+.nav-toggler.nav-toggler--02 span:nth-child(2) {
+  transform: translate3d(-50%, -1px, 0);
+}
+.nav-toggler.nav-toggler--02 span:nth-child(2)::after {
+  transition: transform 0.4s ease 0.1s;
+}
+.nav-toggler.nav-toggler--02 span:nth-child(3) {
+  transform: translate3d(-50%, 5px, 0);
+}
+.nav-toggler.nav-toggler--02 span:nth-child(3)::after {
+  transition: transform 0.4s ease;
+}
+.nav-toggler.nav-toggler--02:hover span::after {
+  transform: translate3d(100%, 0, 0);
+}
+.nav-toggler.nav-toggler--02.open span:nth-child(1) {
+  transform: translate3d(-50%, -1px, 0) rotate(45deg);
+}
+.nav-toggler.nav-toggler--02.open span:nth-child(2) {
+  opacity: 0;
+  transform: translate3d(-100%, -1px, 0);
+}
+.nav-toggler.nav-toggler--02.open span:nth-child(3) {
+  transform: translate3d(-50%, -1px, 0) rotate(-45deg);
+}
+.nav-toggler.nav-toggler--03 span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.nav-toggler.nav-toggler--03 span:nth-child(1) {
+  color: #00bfff;
+  transform: translate3d(-50%, -50%, 0);
+  transition: all 0.4s ease;
+}
+.nav-toggler.nav-toggler--03 span:nth-child(2) {
+  width: 30px;
+  height: 2px;
+  opacity: 0;
+  background-color: #00bfff;
+  transform: translate3d(-50%, -50%, 0) scale(0, 0) rotate(180deg);
+  transition: all 0.4s ease;
+}
+.nav-toggler.nav-toggler--03 span:nth-child(2)::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #00bfff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(90deg);
+}
+.nav-toggler.nav-toggler--03.open span:nth-child(1) {
+  opacity: 0;
+  transform: translate3d(-50%, -50%, 0) scale(0, 0);
+}
+.nav-toggler.nav-toggler--03.open span:nth-child(2) {
+  opacity: 1;
+  transform: translate3d(-50%, -1px, 0) scale(1, 1) rotate(45deg);
 }
 
 /*# sourceMappingURL=styled.css.map */

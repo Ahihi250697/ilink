@@ -1,12 +1,22 @@
 @charset 'UTF-8';
 
 .ani {
-    transition: all 0.3s linear;
     display: inline-block;
+    // transition: transform 0.3s ease, opacity 0.3s linear;
+    transition: transform 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity 0.3s linear;
+    // transition-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    // -webkit-transition-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    // transition-duration: 0.4s;
+    // -webkit-transition-duration: 0.4s;
+}
+
+p {
+    margin-bottom: 30px;
 }
 
 @import './_par/fadein';
 @import './_par/zoom';
 @import './_par/wave';
+@import './_par/type';
 @import './_par/linebar';
 @import './_par/bracket';

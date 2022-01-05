@@ -1,25 +1,66 @@
-.fade,
-.fade-in {
+.fade-in,
+.fade-in-bottom {
     transform: translate3d(0, 40px, 0);
+}
+
+.fade-in-bottom-100 {
+    transform: translate3d(0, 100%, 0);
+}
+
+.fade-in-bottom-screen {
+    transform: translate3d(0, 100vh, 0);
 }
 
 .fade-in-left {
     transform: translate3d(-40px, 0, 0);
 }
 
+.fade-in-left-100 {
+    transform: translate3d(-100%, 0, 0);
+}
+
+.fade-in-left-screen {
+    transform: translate3d(-100vw, 0, 0);
+}
+
 .fade-in-right {
     transform: translate3d(40, 0, 0);
+}
+
+.fade-in-right-100 {
+    transform: translate3d(100%, 0, 0);
+}
+
+.fade-in-right-screen {
+    transform: translate3d(100vw, 0, 0);
 }
 
 .fade-in-top {
     transform: translate3d(0, -40px, 0);
 }
 
+.fade-in-top-100 {
+    transform: translate3d(0, -100%, 0);
+}
+
+.fade-in-top-screen {
+    transform: translate3d(0, -100vh, 0);
+}
+
 .fade,
 .fade-in,
+.fade-in-bottom,
+.fade-in-bottom-100,
+.fade-in-bottom-screen,
 .fade-in-left,
+.fade-in-left-100,
+.fade-in-left-screen,
 .fade-in-right,
-.fade-in-top {
+.fade-in-right-100,
+.fade-in-right-screen,
+.fade-in-top,
+.fade-in-top-100,
+.fade-in-top-screen {
     opacity: 0;
 
     &.animated {

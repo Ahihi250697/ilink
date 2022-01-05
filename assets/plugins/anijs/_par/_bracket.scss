@@ -6,13 +6,13 @@
     &::before,
     &::after {
         content: '';
-        width: 16px;
+        width: 6px;
         height: 100%;
         position: absolute;
         top: 0;
         font-size: inherit;
         font-weight: 700;
-        border: 3px solid black;
+        border: 2px solid black;
         background-color: #000;
         transition: opacity 0.5s linear, left 0.5s ease;
     }

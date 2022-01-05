@@ -365,18 +365,57 @@ $(".mode").on("click", function () {
  - false => clear slot => can click = true => so lan click - 1
 
  */
-let _click = 0;
-$('html').on("click", function (e) {
-    _click++;
-    console.log(_click);
-    let _top = e.clientY,
-        _left = e.clientX,
-        _id = `m${_click}`;
-    let _mouseEffect = `<span style="top: ${_top}px; left: ${_left}px" class="mouse-effect" id ="${_id}"></span>`;
-    $('body').append(_mouseEffect);
 
-    let _s = setTimeout(function () {
-        $(`#${_id}`).remove();
-        _click--;
-    }, 1000);
+const MouseEffect = {
+    mouseClickCounter: 0,
+    mouseEffect: false,
+    mouseTarget: $(".mouse-effect-checkbox"),
+    mouseEffectCheckbox: function () {
+        this.mouseTarget.on("click", (e) => {
+            if (this.mouseEffect) {
+                this.mouseEffect = false;
+                this.mouseTarget.removeClass("checked");
+            } else {
+                this.mouseEffect = true;
+                this.mouseTarget.addClass("checked");
+            }
+        });
+    },
+    init: function () {
+        this.mouseEffectCheckbox();
+    }
+
+}
+MouseEffect.init();
+$('html').on("click", (e) => {
+
+    if (MouseEffect.mouseEffect) {
+        MouseEffect.mouseClickCounter++;
+
+        let _top = e.clientY,
+            _left = e.clientX,
+            _id = `effect${MouseEffect.mouseClickCounter}`;
+        let _mouseEffect = `<span style="top: ${_top}px; left: ${_left}px" class="mouse-effect" id ="${_id}"></span>`;
+        $('body').append(_mouseEffect);
+
+        let _s = setTimeout(function () {
+            $(`#${_id}`).remove();
+            MouseEffect.mouseClickCounter--;
+        }, 1000);
+    }
+});
+
+
+const CircelHover = $('.circle-hover');
+
+$('html, body').on("mousemove", function (e) {
+    if (MouseEffect.mouseEffect) {
+        let _x = e.clientX,
+            _y = e.clientY;
+
+        CircelHover.css({
+            top: _y,
+            left: _x
+        });
+    }
 });
