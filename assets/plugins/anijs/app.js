@@ -18,7 +18,16 @@ const Ani = {
     },
 
     AniTypeCreate: function () {
+        const AniType = $(".type");
+        if (AniType.length < 1) return false;
 
+        AniType.map((a, b) => {
+            let _h = $(b).text().replace(/\s+/g, '').split("");
+
+            _h = _h.map((v) => `<span>${v}</span>`).join("");
+
+            $(b).html(_h);
+        });
     },
 
 

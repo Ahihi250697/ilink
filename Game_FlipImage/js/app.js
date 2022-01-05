@@ -1,28 +1,19 @@
-const Paper = $(".paper");
-// Paper.on("mousedown", function (e) {
-//     _startY = e.clientY;
-//     console.log("start y", _startY);
-// }).on("mouseup", function (e) {
-//     e.preventDefault();
-//     let _endY = e.clientY,
-//         _scroll = window.pageYOffset + _startY - _endY;
-
-//     _scroll <= 0 ? _scroll = 0 : _scroll;
-
-//     $("html, body").animate({
-//             scrollTop: _scroll,
-//         },
-//         160
-//     );
-//     return false;
-// });
+/*
+🍕🍔🍟🌭🧂🥓🥚🍳🧇🥞🧈🍞🥐🥨🥯🥖🧀🥗🥙🥪🌮🌯🥫🍖🍗🥩🍠🥟🥠🥡🍱🍘🍙🍚🍛🍜🦪🍣🍤🍥🥮🍢🧆🥘🍲🍝🥣🥧🍦🍧🍨🍩🍪🎂🍰
+*/
 
 const Game = {
-    GameArray: '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 a b c d e f g h i j k l m n o p q r s t u v x y z A B C D E F G H I J K L M N O P Q R S T U V X Y Z AA BB CC DD EE FF GG HH II JJ KK LL MM NN OO PP QQ RR TT UU VV XX YY ZZ'.split(" "),
-    GameScreen: $("#game-screen"),
+    // all items
+    GameItems: '🍕 🍔 🍟 🌭 🧂 🥓 🥚 🍳 🧇 🥞 🧈 🍞 🥐 🥨 🥯 🥖 🧀 🥗 🥙 🥪 🌮 🌯 🥫 🍖 🍗 🥩 🍠 🥟 🥠 🥡 🍱 🍘 🍙 🍚 🍛 🍜 🦪 🍣 🍤 🍥 🥮 🍢 🧆 🥘 🍲 🍝 🥣 🥧 🍦 🍧 🍨 🍩 🍪 🎂 🍰'.split(" "),
+
+    //your point
+    YourPoint: 0,
+    YourPointHTML: $(".your-point"),
+
+    //mode
     CanChooseMode: true,
     GameMode: -1,
-    GameDefault: [4, 10, 30, 60, 40],
+
     CanChooseSlot: true,
     CounterOpen: 0,
     CounterTrue: 0,
@@ -30,11 +21,12 @@ const Game = {
     IsOpenID: [],
     Slots: [],
     SlotsItem: null,
-    Level: 1,
 
-    Paper: $(".paper"),
-    HTMLLevel: $(".current-level"),
-    HTMLClickCounter: $(".click-counter"),
+    //level
+    Level: 60,
+
+    //board
+    Paper: $(".screen"),
 
     SlotItemClick: function () {
         this.SlotsItem.on("click", (e) => {
@@ -63,7 +55,7 @@ const Game = {
 
     GameSlotsPush: function (e) {
         let _item = {
-            value: this.GameArray[e],
+            value: this.GameItems[e],
             active: false
         }
         this.Slots.push(_item);
@@ -74,9 +66,10 @@ const Game = {
         this.Slots.sort(() => Math.random() - 0.5);
     },
 
-    GameCreateArraySlot: function () {
-        let _max = this.Level;
+    GameModeCreate: function () {
         switch (this.GameMode) {
+
+            //easy
             case 0: {
                 console.log("---easy---");
                 _max = this.GameDefault[0];
@@ -87,6 +80,7 @@ const Game = {
                 break;
             }
 
+            //medium
             case 1: {
                 console.log("--- medium ---");
                 _max = this.GameDefault[1];
@@ -97,6 +91,7 @@ const Game = {
                 break;
             }
 
+            //hard
             case 2: {
                 console.log("--- hard ---");
                 _max = this.GameDefault[2];
@@ -106,6 +101,8 @@ const Game = {
                 }
                 break;
             }
+
+            //super hard
             case 3: {
                 console.log("--- super hard ---");
                 _max = this.GameDefault[3];
@@ -114,6 +111,8 @@ const Game = {
                 }
                 break;
             }
+
+            //hell
             case 4: {
                 console.log("--- hell ---");
                 _max = this.GameDefault[4];
@@ -131,21 +130,21 @@ const Game = {
                 break;
             }
         }
+    },
+
+    GameCreateArraySlot: function () {
+        this.Level;
+
         this.CounterTrue = _max;
         // for (let _i = 0; _i < _max; _i++) {
-        //     let _rd = Math.floor(Math.random() * this.GameArray.length);
-        //     this.Slots.push(this.GameArray[_rd]);
-        //     this.Slots.push(this.GameArray[_rd]);
+        //     let _rd = Math.floor(Math.random() * this.GameItems.length);
+        //     this.Slots.push(this.GameItems[_rd]);
+        //     this.Slots.push(this.GameItems[_rd]);
         // }
 
         this.GameSlotsShuffle();
         this.GameCreateSlots(this.Slots);
         console.log("--- create array slot---");
-    },
-
-    GameCreateMode: function () {
-        console.log("game mode", this.GameMode);
-
     },
 
     CheckOpen: function () {
@@ -162,7 +161,7 @@ const Game = {
 
     GameUpdate: function () {
         console.log("--- game update ---");
-        if (this.Level < this.GameArray.length) {
+        if (this.Level < this.GameItems.length) {
             this.Level++;
         }
     },
@@ -187,10 +186,12 @@ const Game = {
         this.GameSlotsShuffle();
         console.log(this.Slots);
         this.Slots.map((a, b) => a.active ? (
-            this.SlotsItem.eq(b).attr("data-content", a.value),
+            // this.SlotsItem.eq(b).attr("data-content", a.value),
+            this.SlotsItem.eq(b).html(a.value),
             this.SlotsItem.eq(b).addClass("is-open")
         ) : (
-            this.SlotsItem.eq(b).attr("data-content", ""),
+            // this.SlotsItem.eq(b).attr("data-content", ""),
+            this.SlotsItem.eq(b).html(''),
             this.SlotsItem.eq(b).removeClass("active is-open")
         ))
     },
@@ -206,7 +207,8 @@ const Game = {
 
             // lật bài
             let _value = this.Slots[e].value;
-            this.SlotsItem.eq(e).attr("data-content", _value);
+            // this.SlotsItem.eq(e).attr("data-content", _value);
+            this.SlotsItem.eq(e).html(_value);
 
             // tăng lượt click
             this.CounterOpen++;
@@ -256,7 +258,7 @@ const Game = {
             this.IsOpenID.map(a => {
                 let _ = this.SlotsItem.eq(a);
                 _.removeClass("active");
-                _.attr("data-content", "");
+                _.html("");
             });
         } else {
             this.IsOpenID.map(a => {
@@ -319,7 +321,6 @@ const Game = {
 };
 
 Game.Init();
-
 // $(".paper__item").on("click", function () {
 //     const _ = $(this);
 //     if (Game.CanChooseSlot && !_.hasClass("active")) {
@@ -334,8 +335,8 @@ Game.Init();
 
 $(".start-with").on("click", function () {
     let _value = $("#game-screen").val();
-    console.log(Game.GameArray.length)
-    if (_value && _value > 0 && _value <= Game.GameArray.length) {
+    console.log(Game.GameItems.length)
+    if (_value && _value > 0 && _value <= Game.GameItems.length) {
         Game.Level = _value;
         Game.GameReset();
     } else {
@@ -366,18 +367,30 @@ $(".mode").on("click", function () {
 
  */
 
+const MouseSpan = $('.mouse');
 const MouseEffect = {
     mouseClickCounter: 0,
     mouseEffect: false,
-    mouseTarget: $(".mouse-effect-checkbox"),
+    mouseTarget: $(".mouse-checkbox"),
+
     mouseEffectCheckbox: function () {
         this.mouseTarget.on("click", (e) => {
             if (this.mouseEffect) {
                 this.mouseEffect = false;
                 this.mouseTarget.removeClass("checked");
+                $('body').css({
+                    cursor: "unset"
+                });
+                $('.mouse').css({
+                    top: "0",
+                    left: "0"
+                });
             } else {
                 this.mouseEffect = true;
                 this.mouseTarget.addClass("checked");
+                $('body').css({
+                    cursor: "none"
+                });
             }
         });
     },
@@ -387,6 +400,7 @@ const MouseEffect = {
 
 }
 MouseEffect.init();
+
 $('html').on("click", (e) => {
 
     if (MouseEffect.mouseEffect) {
@@ -406,10 +420,8 @@ $('html').on("click", (e) => {
 });
 
 
-const CircelHover = $('.circle-hover');
-
 $('html, body').on("mousemove", function (e) {
-    if (MouseEffect.mouseEffect) {
+    if (MouseSpan.mouseEffect) {
         let _x = e.clientX,
             _y = e.clientY;
 
