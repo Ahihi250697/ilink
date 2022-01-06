@@ -14,31 +14,30 @@
 <body>
 
     <div id="root">
+        <div class="point">
+            Your Point:
+            <span class="your-point">0</span>
+        </div>
 
-        <div class="your-point">11000</div>
-
-        <label class="game-level" for="game-level-input">
-            <span class="span">Game level:</span>
-
-            <input type="number" id="game-level-input" value="1">
-        </label>
 
         <div class="game-mode">
-            <span class="mode easy active" data-mode=0></span>
-            <span class="mode medium" data-mode=1></span>
-            <span class="mode hard" data-mode=2></span>
-            <span class="mode super-hard" data-mode=3></span>
-            <span class="mode hell" data-mode=4></span>
+            <div class="game-mode-container">
+                <span class="mode easy">Easy</span>
+                <span class="mode medium">Medium</span>
+                <span class="mode hard">Hard</span>
+                <span class="mode super-hard">Super hard</span>
+                <span class="mode hell">Hell</span>
+            </div>
         </div>
 
         <p class="click-counter">0</p>
 
         <div class="align-center">
-            <div class="screen easy"></div>
+            <div class="screen"></div>
         </div>
 
-
     </div>
+
     <script src="../assets/js/jquery-3.4.1.js"></script>
     <script src="./js/app.js"></script>
 </body>

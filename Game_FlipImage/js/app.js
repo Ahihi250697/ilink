@@ -1,433 +1,376 @@
 /*
 🍕🍔🍟🌭🧂🥓🥚🍳🧇🥞🧈🍞🥐🥨🥯🥖🧀🥗🥙🥪🌮🌯🥫🍖🍗🥩🍠🥟🥠🥡🍱🍘🍙🍚🍛🍜🦪🍣🍤🍥🥮🍢🧆🥘🍲🍝🥣🥧🍦🍧🍨🍩🍪🎂🍰
 */
+/*
+ tạo slot
+ {
+     level (chọn hoặc không, mặc định 1),
+     chọn mode,
+     play,
+
+     tạo slot -> shuffle
+
+     click -> {
+         lật nếu chưa đủ 2, 3 .... lá -> {
+            thêm vào slot những lá đang lật ->{
+                check -> trùng {
+                    lật lên,
+                    số cặp trùng -1 -> {
+                        nếu số cặp trùng = 0 -> win game
+                    }
+                }
+                -> không trung {
+                    up lại
+                }
+            }
+         }
+     }
+ }
+ */
 
 const Game = {
-    // all items
-    GameItems: '🍕 🍔 🍟 🌭 🧂 🥓 🥚 🍳 🧇 🥞 🧈 🍞 🥐 🥨 🥯 🥖 🧀 🥗 🥙 🥪 🌮 🌯 🥫 🍖 🍗 🥩 🍠 🥟 🥠 🥡 🍱 🍘 🍙 🍚 🍛 🍜 🦪 🍣 🍤 🍥 🥮 🍢 🧆 🥘 🍲 🍝 🥣 🥧 🍦 🍧 🍨 🍩 🍪 🎂 🍰'.split(" "),
+    //all items
+    allItems: "🍕 🍔 🍟 🌭 🧂 🥓 🥚 🍳".split(" "),
+    //game point in level
+    point: 0,
+    pointBouns: 0,
+    pointAdd: 5,
+    yourPoint: $(".your-point"),
+    pointCounter(e) {
+        this.yourPoint.addClass("add-point");
+        this.yourPoint.attr("data-content", e);
 
-    //your point
-    YourPoint: 0,
-    YourPointHTML: $(".your-point"),
+        setTimeout(() => {
+            this.yourPoint.removeClass("add-point");
+        }, 300);
+    },
+
+    addPoint(e) {
+        if (e) {
+            let _add = this.pointAdd + Math.floor(this.pointBouns * this.point * 0.01);
+
+            this.pointCounter(_add);
+            this.point += _add;
+            this.yourPoint.html(this.point);
+        }
+
+        $(".click-counter").html(this.pointBouns);
+    },
+
+    //game level
+    level: 1,
+    //couple counter
+    coupleCounter: 1,
 
     //mode
-    CanChooseMode: true,
-    GameMode: -1,
+    mode: 0,
+    hideTime: 1000,
+    canChooseMode: true,
+    modeName: function () {
 
-    CanChooseSlot: true,
-    CounterOpen: 0,
-    CounterTrue: 0,
-    CounterClick: 0,
-    IsOpenID: [],
-    Slots: [],
-    SlotsItem: null,
-
-    //level
-    Level: 60,
-
-    //board
-    Paper: $(".screen"),
-
-    SlotItemClick: function () {
-        this.SlotsItem.on("click", (e) => {
-            const _ = $(e.target);
-
-            if (this.CanChooseSlot && !_.hasClass("active")) {
-                let _ind = _.index();
-                _.addClass("active");
-                this.CheckClick(_ind);
-            } else {
-                console.log("none click")
-            }
-        });
-    },
-
-    GameCreateSlots: function (arr) {
-        let _a = arr.map((a) => {
-            return `<span class="paper__item"></span>`
-        }).join("");
-
-        this.Paper.html(_a);
-        this.SlotsItem = $(".paper__item");
-        this.SlotItemClick();
-        console.log("--- create slot ---");
-    },
-
-    GameSlotsPush: function (e) {
-        let _item = {
-            value: this.GameItems[e],
-            active: false
-        }
-        this.Slots.push(_item);
-        this.Slots.push(_item);
-    },
-
-    GameSlotsShuffle: function () {
-        this.Slots.sort(() => Math.random() - 0.5);
-    },
-
-    GameModeCreate: function () {
-        switch (this.GameMode) {
-
-            //easy
+        switch (this.mode) {
             case 0: {
-                console.log("---easy---");
-                _max = this.GameDefault[0];
-                for (let _i = 0; _i < _max; _i++) {
-                    let _rd = Math.floor(Math.random() * _max);
-                    this.GameSlotsPush(_rd);
-                }
-                break;
+                // this.hideTime = 900;
+                return 'easy';
             }
-
-            //medium
             case 1: {
-                console.log("--- medium ---");
-                _max = this.GameDefault[1];
-                for (let _i = 0; _i < _max; _i++) {
-                    let _rd = Math.floor(Math.random() * _max);
-                    this.GameSlotsPush(_rd);
-                }
-                break;
+                // this.hideTime = 600;
+                return 'medium';
             }
-
-            //hard
             case 2: {
-                console.log("--- hard ---");
-                _max = this.GameDefault[2];
-                for (let _i = 0; _i < _max; _i++) {
-                    let _rd = Math.floor(Math.random() * _max);
-                    this.GameSlotsPush(_rd);
-                }
-                break;
+                // this.hideTime = 400;
+                return 'hard';
             }
-
-            //super hard
             case 3: {
-                console.log("--- super hard ---");
-                _max = this.GameDefault[3];
-                for (let _i = 0; _i < _max; _i++) {
-                    this.GameSlotsPush(_i);
-                }
-                break;
+                // this.hideTime = 200;
+                return 'super-hard';
             }
-
-            //hell
             case 4: {
-                console.log("--- hell ---");
-                _max = this.GameDefault[4];
-                for (let _i = 0; _i < _max; _i++) {
-                    this.GameSlotsPush(_i);
-                }
-                break;
-            }
-
-            default: {
-                for (let _i = 0; _i < _max; _i++) {
-                    let _rd = Math.floor(Math.random() * _max);
-                    this.GameSlotsPush(_rd);
-                }
-                break;
+                //  this.hideTime = 100;
+                return 'hell';
             }
         }
+
     },
+    chooseMode() {
 
-    GameCreateArraySlot: function () {
-        this.Level;
+        $(".mode").on("click", (e) => {
+            //set can choose mode
+            if (!this.canChooseMode) return false;
+            this.canChooseMode = false;
+            //set mode
+            this.mode = $(e.target).index();
 
-        this.CounterTrue = _max;
-        // for (let _i = 0; _i < _max; _i++) {
-        //     let _rd = Math.floor(Math.random() * this.GameItems.length);
-        //     this.Slots.push(this.GameItems[_rd]);
-        //     this.Slots.push(this.GameItems[_rd]);
-        // }
+            //add class and remove mode
+            $(e.target).addClass("active");
+            $(".mode").not(".active").remove();
 
-        this.GameSlotsShuffle();
-        this.GameCreateSlots(this.Slots);
-        console.log("--- create array slot---");
-    },
+            //set mode time
+            switch (this.mode) {
 
-    CheckOpen: function () {
-        let _a1 = this.Slots[this.IsOpenID[0]],
-            _a2 = this.Slots[this.IsOpenID[1]];
-
-        if (_a1.value === _a2.value) {
-            _a1.active = true;
-            _a2.active = true;
-            return true;
-        }
-        return false;
-    },
-
-    GameUpdate: function () {
-        console.log("--- game update ---");
-        if (this.Level < this.GameItems.length) {
-            this.Level++;
-        }
-    },
-
-    GameReset: function () {
-        console.log("---- reset ----");
-        this.Slots.length = 0;
-        this.TurnReset(-1);
-        this.CounterTrue = 0;
-        this.IsOpenID.length = 0;
-        this.CanChooseSlot = true;
-        this.CounterOpen = 0;
-        clearTimeout(this.SetTimeOut);
-        this.GameCounter({
-            fn: "start",
-            fn_type: true,
-            timer: 2
-        });
-    },
-
-    GameHell: function () {
-        this.GameSlotsShuffle();
-        console.log(this.Slots);
-        this.Slots.map((a, b) => a.active ? (
-            // this.SlotsItem.eq(b).attr("data-content", a.value),
-            this.SlotsItem.eq(b).html(a.value),
-            this.SlotsItem.eq(b).addClass("is-open")
-        ) : (
-            // this.SlotsItem.eq(b).attr("data-content", ""),
-            this.SlotsItem.eq(b).html(''),
-            this.SlotsItem.eq(b).removeClass("active is-open")
-        ))
-    },
-
-    CheckClick: function (e) {
-        if (!this.CanChooseSlot) {
-            console.log(this.IsOpenID)
-            return false;
-
-        } else {
-            // thêm id mấy đứa vùa mở
-            this.IsOpenID.push(e);
-
-            // lật bài
-            let _value = this.Slots[e].value;
-            // this.SlotsItem.eq(e).attr("data-content", _value);
-            this.SlotsItem.eq(e).html(_value);
-
-            // tăng lượt click
-            this.CounterOpen++;
-
-            // check click turn
-            if (this.CounterOpen >= 2) {
-                this.CanChooseSlot = false;
-
-                //kiểm tra 2 cái lật có giống nhao ko
-                let _check = this.CheckOpen();
-                if (_check) {
-                    // trung nhao ne
-                    this.GameCounter({
-                        fn: "reset",
-                        fn_type: true,
-                        timer: 1
-                    });
-
-                    this.CounterTrue--;
-                    if (this.CounterTrue <= 0) {
-                        this.GameUpdate();
-                        this.GameReset();
-                        return 0;
-                    }
-                } else {
-                    // khong trung nhao ne
-
-                    // tăng lượt click
-                    this.CounterClick++;
-                    this.HTMLClickCounter.html(this.CounterClick);
-
-                    // reset click
-                    this.GameCounter({
-                        fn: "reset",
-                        fn_type: false,
-                        timer: 1
-                    });
+                //medium
+                case 1: {
+                    this.hideTime = 600;
+                    this.pointAdd = 30;
+                    break;
                 }
-            }
-        }
-        return true;
-    },
-
-    TurnReset: function (e) {
-        console.log("--- reset ---");
-        if (!e) {
-            this.IsOpenID.map(a => {
-                let _ = this.SlotsItem.eq(a);
-                _.removeClass("active");
-                _.html("");
-            });
-        } else {
-            this.IsOpenID.map(a => {
-                this.SlotsItem.eq(a).addClass("is-open");
-            });
-            switch (this.GameMode) {
+                //hard
+                case 2: {
+                    this.hideTime = 400;
+                    this.pointAdd = 60;
+                    break;
+                }
+                //super hard
+                case 3: {
+                    this.hideTime = 200;
+                    this.pointAdd = 100;
+                    break;
+                }
+                //hell
                 case 4: {
-                    console.log("--- hell ---");
-                    this.GameHell();
 
+                    this.hideTime = 100;
+                    this.pointAdd = 220;
                     break;
                 }
             }
-        }
-        // reset click
-        this.IsOpenID.length = 0;
-        this.CanChooseSlot = true;
-        this.CounterOpen = 0;
+
+            //render
+            this.render();
+        });
+
     },
 
-    GameCounter: function (act) {
-        let _counter = act.timer;
+    //render
+    screen: $(".screen"),
+    items: [],
+    itemsPush(e) {
 
-        if (_counter > 0) {
-            act.timer -= 1
-            this.SetTimeOut = setTimeout(() => {
-                this.GameCounter(act);
-            }, 500);
+        this.items.push(e);
+        this.items.push(e);
+
+    },
+    itemsShuffle() {
+
+        this.items.sort(() => Math.random() - 0.5);
+
+    },
+    renderSlot(e) {
+
+        if (e) {
+            for (let _i = 0; _i < this.level; _i++) {
+                let _item = {
+                    id: _i,
+                    active: 0
+                };
+                this.itemsPush(_item);
+            }
+        } else {
+            console.log("false");
+            for (let _i = 0; _i < this.level; _i++) {
+                let _id = Math.floor(Math.random() * this.level);
+                let _item = {
+                    id: _id,
+                    active: 0
+                };
+                this.itemsPush(_item);
+            }
+        }
+
+    },
+    renderMode() {
+
+        if (this.level < 1) this.level = 1;
+        if (this.level >= this.allItems.length) this.level = this.allItems.length;
+        this.coupleCounter = this.level;
+        console.log(this.level, "lv");
+        let _modename = this.modeName();
+        //add sreen mode
+        this.screen.addClass(_modename);
+
+        //render with mode
+        switch (this.mode) {
+
+            //medium
+            case 1:
+                //hard
+            case 2:
+                //super hard
+            case 3:
+                //hell
+            case 4: {
+                console.log("--- 1 2 3 4 mode ---");
+                this.renderSlot(true);
+                break;
+            }
+
+            //easy
+            default: {
+                console.log("--- easy mode ---");
+                this.renderSlot(false);
+                break;
+            }
+        }
+
+        this.itemsShuffle();
+
+    },
+    renderItems(e) {
+
+        let _html = `<span class="paper__item"></span>`.repeat(this.items.length);
+        console.log(this.items.length);
+        this.screen.html(_html);
+
+    },
+    render() {
+
+        //array with mode
+        this.renderMode();
+        //html items
+        this.renderItems();
+        //play
+        this.play();
+
+    },
+
+    //play
+    slotOpen: [],
+    clickMode: 2,
+    clickModeCounter: 2,
+    slotOpenReset(e) {
+
+        if (e) {
 
         } else {
-            //this.CanChooseSlot = !this.CanChooseSlot;
-
-            switch (act.fn) {
-                case "reset": {
-                    this.TurnReset(act.fn_type);
-                    return false;
-                }
-                case "start": {
-                    return this.GameStart();
-                }
-            }
+            this.slotOpen.map((a, b) => {
+                let _a = $(".paper__item").eq(a);
+                _a.removeClass("active");
+                _a.html("");
+            });
         }
-        // lap lai
-        // this.GameCounter({
-        //     timer: 2
-        // });
-    },
-
-    GameStart: function () {
-        this.HTMLLevel.html(this.Level);
-
-        this.GameCreateArraySlot();
+        this.slotOpen.length = 0;
+        this.clickModeCounter = this.clickMode;
 
     },
+    slotOpenCheck() {
 
-    Init: function () {
-        //this.GameCounter(10);
-        this.GameStart();
-    }
-};
+        let _slot1id = this.slotOpen[0],
+            _slot1 = this.items[_slot1id].id;
+        for (let _i = 1; _i < this.slotOpen.length; _i++) {
+            let _slotid = this.slotOpen[_i];
 
-Game.Init();
-// $(".paper__item").on("click", function () {
-//     const _ = $(this);
-//     if (Game.CanChooseSlot && !_.hasClass("active")) {
-//         let _ind = _.index();
-//         _.addClass("active");
-//         Game.CheckClick(_ind);
-//     } else {
-//         console.log("none click")
-//     }
-//     // Game.GameCreateScreen();
-// });
+            if (this.items[_slotid].id !== _slot1) return false;
+        }
+        return true;
 
-$(".start-with").on("click", function () {
-    let _value = $("#game-screen").val();
-    console.log(Game.GameItems.length)
-    if (_value && _value > 0 && _value <= Game.GameItems.length) {
-        Game.Level = _value;
-        Game.GameReset();
-    } else {
-        Game.GameReset();
-    }
-});
+    },
+    paperItemsClick() {
+        const Slots = $(".paper__item");
+        Slots.on("click", (e) => {
+            const _ = $(e.target);
+            const slotID = _.index();
 
-$(".mode").on("click", function () {
-    const _ = $(this);
-    $(".mode").removeClass("active");
-    const ModeValue = _.attr("data-mode");
-    _.addClass("active");
-    Game.GameMode = +ModeValue;
-    Game.GameCreateMode();
-});
+            if (this.clickModeCounter > 0) {
+                //push ID to open array
+                this.slotOpen.push(slotID);
 
-/*
- tạo slot
- => click 1
- push slot () => in ra html => active
+                //addclass active
+                _.addClass("active");
 
- => click 2 
- => can click => push slot => false => in ra html => active => check slot
+                //add data
+                let _iddata = this.items[slotID];
 
- - true => clear slot => can click = true => so lan click + 1
+                _.html(this.allItems[_iddata.id]);
 
- - false => clear slot => can click = true => so lan click - 1
+                //descrease click follow mode
+                this.clickModeCounter--;
 
- */
+                //check open slot
+                if (this.clickModeCounter === 0) {
+                    //start check
+                    if (this.slotOpenCheck()) {
+                        console.log("--- giong nhau ne ---");
 
-const MouseSpan = $('.mouse');
-const MouseEffect = {
-    mouseClickCounter: 0,
-    mouseEffect: false,
-    mouseTarget: $(".mouse-checkbox"),
+                        //add point
+                        this.pointBouns++;
+                        this.addPoint(true);
 
-    mouseEffectCheckbox: function () {
-        this.mouseTarget.on("click", (e) => {
-            if (this.mouseEffect) {
-                this.mouseEffect = false;
-                this.mouseTarget.removeClass("checked");
-                $('body').css({
-                    cursor: "unset"
-                });
-                $('.mouse').css({
-                    top: "0",
-                    left: "0"
-                });
+                        //decrease 1 with couple slot
+                        this.coupleCounter--;
+                        this.slotOpenReset(true);
+
+                        if (this.coupleCounter <= 0) {
+                            console.log("--- win game ---");
+                            this.createNotification("win");
+                            setTimeout(() => {
+                                this.reset(true);
+                            }, 300);
+                        } else {
+                            this.createNotification("open");
+                        }
+
+                    } else {
+                        console.log("--- ko giong nha ---");
+                        //add point
+                        this.pointBouns = 0;
+                        this.addPoint(false);
+                        setTimeout(() => {
+                            this.slotOpenReset(false);
+                        }, this.hideTime);
+                    }
+                }
+
             } else {
-                this.mouseEffect = true;
-                this.mouseTarget.addClass("checked");
-                $('body').css({
-                    cursor: "none"
-                });
+                console.log("cant cclick");
+                this.createNotification("error");
             }
+        }).on("mouseenter", (e) => {
+            const _ = $(e.target);
+            const slotID = _.index();
+            //add data
+            let _iddata = this.items[slotID];
+
+            _.html(this.allItems[_iddata.id]);
+        }).on("mouseleave", (e) => {
+            const _ = $(e.target);
+            const slotID = _.index();
+            //add data
+            let _iddata = this.items[slotID];
+
+            _.html("");
         });
     },
-    init: function () {
-        this.mouseEffectCheckbox();
-    }
+    createNotification(c) {
+        let _n = `<span id="a" class="noti ${c}"></span>`;
 
-}
-MouseEffect.init();
-
-$('html').on("click", (e) => {
-
-    if (MouseEffect.mouseEffect) {
-        MouseEffect.mouseClickCounter++;
-
-        let _top = e.clientY,
-            _left = e.clientX,
-            _id = `effect${MouseEffect.mouseClickCounter}`;
-        let _mouseEffect = `<span style="top: ${_top}px; left: ${_left}px" class="mouse-effect" id ="${_id}"></span>`;
-        $('body').append(_mouseEffect);
-
-        let _s = setTimeout(function () {
-            $(`#${_id}`).remove();
-            MouseEffect.mouseClickCounter--;
+        $('#root').append(_n);
+        setTimeout(() => {
+            $('#a').remove();
         }, 1000);
+    },
+    play() {
+        console.log("--- play ---");
+        this.paperItemsClick();
+
+    },
+
+    //reset
+    reset(e) {
+        console.log("--- reset ---");
+        if (e) {
+            let _add = this.mode >= 3 ? 2 : this.mode;
+            this.level += _add + 1;
+            this.items.length = 0;
+            console.log("target", this.level, this.coupleCounter);
+            this.render();
+        }
+
+    },
+
+    //init
+    init() {
+        //set mode
+        this.chooseMode();
     }
-});
-
-
-$('html, body').on("mousemove", function (e) {
-    if (MouseSpan.mouseEffect) {
-        let _x = e.clientX,
-            _y = e.clientY;
-
-        CircelHover.css({
-            top: _y,
-            left: _x
-        });
-    }
-});
+}
+Game.init();
