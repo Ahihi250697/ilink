@@ -111,6 +111,12 @@ body {
                 animation: kf_youtpoint_after 0.3s ease 0s 1 both;
             }
         }
+
+        &.lose {
+            &::after {
+                color: $c_red;
+            }
+        }
     }
 
     @media only screen and (min-width: 1024px) {}

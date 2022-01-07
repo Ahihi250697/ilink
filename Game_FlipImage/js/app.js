@@ -36,23 +36,35 @@ const Game = {
     pointBouns: 0,
     pointAdd: 10,
     yourPoint: $(".your-point"),
-    pointCounter(e) {
-        this.yourPoint.addClass("add-point");
-        this.yourPoint.attr("data-content", e);
+    // pointCounter(e, c = true) {
+    //     if (c) {
+    //         this.yourPoint.addClass("add-point");
+    //     } else {
+    //         this.yourPoint.addClass("add-point lose");
+    //     }
+    //     this.yourPoint.attr("data-content", e);
 
-        setTimeout(() => {
-            this.yourPoint.removeClass("add-point");
-        }, 300);
-    },
+    //     setTimeout(() => {
+    //         this.yourPoint.removeClass("add-point lose");
+    //     }, 300);
+    // },
     addPoint(e) {
+        let _add = 0;
+
         if (e) {
-            let _add = this.pointAdd + Math.floor(this.pointBouns * this.point * 0.1);
+            _add = this.pointAdd + Math.floor(this.pointBouns * this.point * 0.1);
+            this.yourPoint.addClass("add-point");
 
-            this.pointCounter(_add);
-            this.point += _add;
-            this.yourPoint.html(this.point);
+        } else {
+            _add = (this.mode + 1) * -2;
+            this.yourPoint.addClass("add-point lose");
         }
-
+        setTimeout(() => {
+            this.yourPoint.removeClass("add-point lose");
+        }, 300);
+        this.point += _add;
+        this.yourPoint.attr("data-content", _add);
+        this.yourPoint.html(this.point)
         $(".crit-bonus").html(this.pointBouns);
     },
 
@@ -117,7 +129,7 @@ const Game = {
                 //hard
                 case 2: {
                     this.hideTime = 400;
-                    this.pointAdd = 60;
+                    this.pointAdd = 40;
                     this.clickMode = 3;
                     this.clickModeCounter = 3;
                     break;
@@ -125,14 +137,14 @@ const Game = {
                 //super hard
                 case 3: {
                     this.hideTime = 200;
-                    this.pointAdd = 120;
+                    this.pointAdd = 80;
 
                     break;
                 }
                 //hell
                 case 4: {
                     this.hideTime = 100;
-                    this.pointAdd = 200;
+                    this.pointAdd = 100;
                     this.clickMode = 3;
                     this.clickModeCounter = 3;
                     break;

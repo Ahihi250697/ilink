@@ -96,6 +96,9 @@ body {
   content: attr(data-content);
   animation: kf_youtpoint_after 0.3s ease 0s 1 both;
 }
+.point .your-point.lose::after {
+  color: #dc3545;
+}
 @keyframes kf_youtpoint_after {
   0% {
     opacity: 1;
