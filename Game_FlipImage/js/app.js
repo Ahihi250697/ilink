@@ -61,10 +61,17 @@ const Game = {
         }
         setTimeout(() => {
             this.yourPoint.removeClass("add-point lose");
+            this.yourPoint.attr("data-content", 0);
         }, 300);
+
         this.point += _add;
-        this.yourPoint.attr("data-content", _add);
-        this.yourPoint.html(this.point)
+        if (this.point < 0) {
+            this.point = 0;
+        } else {
+            this.yourPoint.attr("data-content", _add);
+            this.yourPoint.html(this.point);
+        }
+
         $(".crit-bonus").html(this.pointBouns);
     },
 
