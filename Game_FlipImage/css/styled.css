@@ -18,6 +18,11 @@ body {
   background-color: #333;
   overflow: hidden;
 }
+@media only screen and (max-width: 1023px) {
+  body {
+    font-size: 14px;
+  }
+}
 
 .noti, .screen > .paper__item, .game-play, .game-mode .mode {
   width: 100%;
@@ -59,6 +64,12 @@ body {
 @media only screen and (min-width: 1024px) {
   #root {
     padding: 10px;
+  }
+}
+@media only screen and (max-width: 1023px) {
+  #root::after {
+    font-size: 16px;
+    white-space: nowrap;
   }
 }
 
@@ -153,6 +164,12 @@ body {
     max-width: 1024px;
     margin: 0 auto;
     margin-top: 40px;
+  }
+}
+@media only screen and (max-width: 1023px) {
+  .game-mode .mode {
+    max-width: calc(25% - 8px);
+    margin-top: 8px;
   }
 }
 
