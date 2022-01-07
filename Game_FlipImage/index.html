@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game | Flip Image Game</title>
+    <title>Game | Flip Image</title>
     <link rel="stylesheet" href="./css/styled.css">
     <link rel="shortcut icon" href="../images/default/fa_icon.svg" type="image/x-icon">
 
@@ -14,11 +14,11 @@
 <body>
 
     <div id="root">
+        <span class="back"></span>
         <div class="point">
             Your Point:
             <span class="your-point">0</span>
         </div>
-
 
         <div class="game-mode">
             <div class="game-mode-container">
@@ -30,12 +30,68 @@
             </div>
         </div>
 
-        <p class="click-counter">0</p>
+        <div class="crit-click">
+            <span>Bonus: </span>
+            <span class="crit-bonus">0</span>
+        </div>
+
 
         <div class="align-center">
             <div class="screen"></div>
         </div>
 
+        <button class="guide-toggler">?</button>
+        <div class="guide">
+
+            <div class="guide-container">
+                <p class="guide-summary">
+                    Click vào hình để lật bài, item giống nhau sẽ được + điểm tùy vào mode, lật đúng liên tiếp để được
+                    bonus
+                    điểm.
+                </p>
+
+                <ul class="guide-mode">
+                    <li class="guide-mode__easy">
+                        <p class="mode-name">Easy</p>
+                        <p class="mode-desc">
+                            + Điểm: 10<br />
+                            + Tìm 2 item giống nhau.
+                        </p>
+                    </li>
+                    <li class="guide-mode__medium">
+                        <p class="mode-name">Medium</p>
+                        <p class="mode-desc">
+                            + Điểm: 20<br />
+                            + Tìm 2 item giống nhau.
+                        </p>
+                    </li>
+                    <li class="guide-mode__hard">
+                        <p class="mode-name">Hard</p>
+                        <p class="mode-desc">
+                            + Điểm: 60<br />
+                            + Tìm 3 item giống nhau.
+                        </p>
+                    </li>
+                    <li class="guide-mode__super">
+                        <p class="mode-name">Super hard</p>
+                        <p class="mode-desc">
+                            + Điểm: 120<br />
+                            + Tìm 2 item giống nhau.<br />
+                            + Sau khi tìm thành công sẽ đổi vị trí item.
+                        </p>
+                    </li>
+                    <li class="guide-mode__hell">
+                        <p class="mode-name">Hell</p>
+                        <p class="mode-desc">
+                            + Điểm: 200<br />
+                            + Tìm 3 item giống nhau.<br />
+                            + Sau khi tìm thành công sẽ đổi vị trí item.
+                        </p>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
     </div>
 
     <script src="../assets/js/jquery-3.4.1.js"></script>

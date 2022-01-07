@@ -30,11 +30,11 @@
 
 const Game = {
     //all items
-    allItems: "🍕 🍔 🍟 🌭 🧂 🥓 🥚 🍳".split(" "),
+    allItems: "🍕 🍔 🍟 🌭 🧂 🥓 🥚 🍳 🧇 🥞 🧈 🍞 🥐 🥨 🥯 🥖 🧀 🥗 🥙 🥪 🌮 🌯 🥫 🍖 🍗 🥩 🍠 🥟 🥠 🥡 🍱 🍘 🍙 🍚 🍛 🍜 🦪 🍣 🍤 🍥 🥮 🍢 🧆 🥘 🍲 🍝 🥣 🥧 🍦 🍧 🍨 🍩 🍪 🎂 🍰".split(" "),
     //game point in level
     point: 0,
     pointBouns: 0,
-    pointAdd: 5,
+    pointAdd: 10,
     yourPoint: $(".your-point"),
     pointCounter(e) {
         this.yourPoint.addClass("add-point");
@@ -44,17 +44,16 @@ const Game = {
             this.yourPoint.removeClass("add-point");
         }, 300);
     },
-
     addPoint(e) {
         if (e) {
-            let _add = this.pointAdd + Math.floor(this.pointBouns * this.point * 0.01);
+            let _add = this.pointAdd + Math.floor(this.pointBouns * this.point * 0.1);
 
             this.pointCounter(_add);
             this.point += _add;
             this.yourPoint.html(this.point);
         }
 
-        $(".click-counter").html(this.pointBouns);
+        $(".crit-bonus").html(this.pointBouns);
     },
 
     //game level
@@ -102,6 +101,7 @@ const Game = {
             this.mode = $(e.target).index();
 
             //add class and remove mode
+            // $(".mode").removeClass("active");
             $(e.target).addClass("active");
             $(".mode").not(".active").remove();
 
@@ -111,26 +111,30 @@ const Game = {
                 //medium
                 case 1: {
                     this.hideTime = 600;
-                    this.pointAdd = 30;
+                    this.pointAdd = 20;
                     break;
                 }
                 //hard
                 case 2: {
                     this.hideTime = 400;
                     this.pointAdd = 60;
+                    this.clickMode = 3;
+                    this.clickModeCounter = 3;
                     break;
                 }
                 //super hard
                 case 3: {
                     this.hideTime = 200;
-                    this.pointAdd = 100;
+                    this.pointAdd = 120;
+
                     break;
                 }
                 //hell
                 case 4: {
-
                     this.hideTime = 100;
-                    this.pointAdd = 220;
+                    this.pointAdd = 200;
+                    this.clickMode = 3;
+                    this.clickModeCounter = 3;
                     break;
                 }
             }
@@ -144,10 +148,10 @@ const Game = {
     //render
     screen: $(".screen"),
     items: [],
-    itemsPush(e) {
-
-        this.items.push(e);
-        this.items.push(e);
+    itemsPush(e, c = 2) {
+        for (let _i = 0; _i < c; _i++) {
+            this.items.push(e);
+        }
 
     },
     itemsShuffle() {
@@ -155,81 +159,102 @@ const Game = {
         this.items.sort(() => Math.random() - 0.5);
 
     },
-    renderSlot(e) {
+    renderSlot() {
 
-        if (e) {
-            for (let _i = 0; _i < this.level; _i++) {
-                let _item = {
-                    id: _i,
-                    active: 0
-                };
-                this.itemsPush(_item);
+        switch (this.mode) {
+            case 1:
+            case 3: {
+                for (let _i = 0; _i < this.level; _i++) {
+                    let _item = {
+                        id: _i,
+                        active: 0
+                    };
+                    this.itemsPush(_item, 2);
+                }
+                break;
             }
-        } else {
-            console.log("false");
-            for (let _i = 0; _i < this.level; _i++) {
-                let _id = Math.floor(Math.random() * this.level);
-                let _item = {
-                    id: _id,
-                    active: 0
-                };
-                this.itemsPush(_item);
+
+            case 2:
+            case 4: {
+                for (let _i = 0; _i < this.level; _i++) {
+                    let _item = {
+                        id: _i,
+                        active: 0
+                    };
+                    this.itemsPush(_item, 3);
+                }
+                break;
+            }
+
+            default: {
+                for (let _i = 0; _i < this.level; _i++) {
+                    let _id = Math.floor(Math.random() * this.level);
+                    let _item = {
+                        id: _id,
+                        active: 0
+                    };
+                    this.itemsPush(_item, 2);
+                }
+                break;
             }
         }
 
+        this.itemsShuffle();
     },
     renderMode() {
 
         if (this.level < 1) this.level = 1;
         if (this.level >= this.allItems.length) this.level = this.allItems.length;
         this.coupleCounter = this.level;
-        console.log(this.level, "lv");
+
         let _modename = this.modeName();
+
         //add sreen mode
         this.screen.addClass(_modename);
 
         //render with mode
-        switch (this.mode) {
-
-            //medium
-            case 1:
-                //hard
-            case 2:
-                //super hard
-            case 3:
-                //hell
-            case 4: {
-                console.log("--- 1 2 3 4 mode ---");
-                this.renderSlot(true);
-                break;
-            }
-
-            //easy
-            default: {
-                console.log("--- easy mode ---");
-                this.renderSlot(false);
-                break;
-            }
-        }
-
-        this.itemsShuffle();
+        this.renderSlot();
 
     },
-    renderItems(e) {
+    renderItems(e = true) {
 
-        let _html = `<span class="paper__item"></span>`.repeat(this.items.length);
-        console.log(this.items.length);
+        let _html = '';
+        if (e) {
+            _html = `<span class="paper__item"></span>`.repeat(this.items.length);
+
+        } else {
+            this.items.map((a) => {
+
+                // let _iddata = this.items[slotID];
+
+                // _.html(this.allItems[_iddata.id]);
+                a.active === 1 ?
+                    _html += `<span class="paper__item active">${this.allItems[a.id]}</span>` :
+                    _html += `<span class="paper__item"></span>`
+            }).join('');
+        };
         this.screen.html(_html);
-
+        this.paperItemsClick();
     },
     render() {
 
         //array with mode
         this.renderMode();
         //html items
-        this.renderItems();
+        this.renderItems(true);
         //play
-        this.play();
+        // this.play();
+
+    },
+    //notification
+    createNotification(c) {
+
+        let _n = `<span id="a" class="noti ${c}"></span>`;
+
+        $('#root').append(_n);
+        setTimeout(() => {
+            $('#a').remove();
+        }, 1000);
 
     },
 
@@ -240,7 +265,14 @@ const Game = {
     slotOpenReset(e) {
 
         if (e) {
+            this.slotOpen.map((a, b) => {
+                let _a = this.items[a].active = 1;
+            });
 
+            if ((this.mode === 3 || this.mode === 4) && this.coupleCounter > 0) {
+                this.itemsShuffle();
+                this.renderItems(false);
+            }
         } else {
             this.slotOpen.map((a, b) => {
                 let _a = $(".paper__item").eq(a);
@@ -265,6 +297,7 @@ const Game = {
 
     },
     paperItemsClick() {
+
         const Slots = $(".paper__item");
         Slots.on("click", (e) => {
             const _ = $(e.target);
@@ -289,7 +322,7 @@ const Game = {
                 if (this.clickModeCounter === 0) {
                     //start check
                     if (this.slotOpenCheck()) {
-                        console.log("--- giong nhau ne ---");
+                        // console.log("--- giong nhau ne ---");
 
                         //add point
                         this.pointBouns++;
@@ -300,7 +333,7 @@ const Game = {
                         this.slotOpenReset(true);
 
                         if (this.coupleCounter <= 0) {
-                            console.log("--- win game ---");
+                            // console.log("--- win game ---");
                             this.createNotification("win");
                             setTimeout(() => {
                                 this.reset(true);
@@ -310,7 +343,7 @@ const Game = {
                         }
 
                     } else {
-                        console.log("--- ko giong nha ---");
+                        // console.log("--- ko giong nha ---");
                         //add point
                         this.pointBouns = 0;
                         this.addPoint(false);
@@ -321,47 +354,30 @@ const Game = {
                 }
 
             } else {
-                console.log("cant cclick");
+                // console.log("cant cclick");
                 this.createNotification("error");
             }
-        }).on("mouseenter", (e) => {
-            const _ = $(e.target);
-            const slotID = _.index();
-            //add data
-            let _iddata = this.items[slotID];
-
-            _.html(this.allItems[_iddata.id]);
-        }).on("mouseleave", (e) => {
-            const _ = $(e.target);
-            const slotID = _.index();
-            //add data
-            let _iddata = this.items[slotID];
-
-            _.html("");
         });
-    },
-    createNotification(c) {
-        let _n = `<span id="a" class="noti ${c}"></span>`;
-
-        $('#root').append(_n);
-        setTimeout(() => {
-            $('#a').remove();
-        }, 1000);
-    },
-    play() {
-        console.log("--- play ---");
-        this.paperItemsClick();
 
     },
+    // play() {
+
+    //     console.log("--- play ---");
+    //     this.paperItemsClick();
+
+    // },
 
     //reset
     reset(e) {
+
         console.log("--- reset ---");
         if (e) {
             let _add = this.mode >= 3 ? 2 : this.mode;
             this.level += _add + 1;
             this.items.length = 0;
-            console.log("target", this.level, this.coupleCounter);
+            this.render();
+        } else {
+            this.items.length = 0;
             this.render();
         }
 
@@ -374,3 +390,10 @@ const Game = {
     }
 }
 Game.init();
+
+$(".guide-toggler").on("click", function () {
+    const _ = $('.guide');
+    _.hasClass("open") ?
+        _.removeClass("open") :
+        _.addClass("open");
+});

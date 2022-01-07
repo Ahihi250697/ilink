@@ -23,6 +23,7 @@ body {
     min-height: 100vh;
     padding: 20px 10px 10px;
     background-color: $c_dark;
+    overflow: hidden;
 }
 
 
@@ -99,9 +100,7 @@ body {
         }
     }
 
-    @media only screen and (min-width: 1024px) {
-        text-align: right;
-    }
+    @media only screen and (min-width: 1024px) {}
 }
 
 @keyframes kf_youtpoint_after {
@@ -223,14 +222,16 @@ body {
     }
 }
 
-.click-counter {
-    font-size: 20px;
-    color: $c_white;
+.crit-click {
     margin-top: 20px;
+    color: $c_white;
 
-    &::before {
-        content: 'Click counter: ';
-        font-size: 14px;
+    .crit-bonus {
+        font-size: 20px;
+
+        &::before {
+            content: 'x';
+        }
     }
 
     @media only screen and (min-width: 1024px) {
@@ -379,5 +380,121 @@ body {
     to {
         top: 0;
         opacity: 0;
+    }
+}
+
+.guide-toggler {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 99px;
+    border: 0;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 10px;
+    margin-left: auto;
+}
+
+.guide {
+    position: fixed;
+    z-index: 900;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $c_dark;
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0.3s ease, opacity 0.2s linear;
+
+    &.open {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .guide-container {
+        color: $c_white;
+        width: 375px;
+        max-width: 100%;
+        padding: 20px 10px;
+        margin-left: auto;
+        font-size: 14px;
+        margin-top: 50px;
+    }
+
+    .guide-summary {}
+
+    .guide-mode {
+        list-style: none;
+
+        .mode-name {
+            margin-top: 30px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .mode-desc {
+            margin-top: 8px;
+        }
+    }
+
+    .guide-mode__easy {}
+
+    .guide-mode__medium {
+        .mode-name {
+            color: $c_green;
+        }
+    }
+
+    .guide-mode__hard {
+        .mode-name {
+            color: $c_blue;
+        }
+    }
+
+    .guide-mode__super {
+        .mode-name {
+            color: $c_yellow;
+        }
+    }
+
+    .guide-mode__hell {
+        .mode-name {
+            color: $c_red;
+        }
+    }
+
+    @media only screen and(min-width: 1024px) {
+        .guide-toggler {
+            cursor: pointer;
+        }
+
+        .guide-container {
+            font-size: 16px;
+        }
+
+        .guide-summary {}
+
+        .guide-mode {
+            .mode-name {}
+
+            .mode-desc {}
+        }
+
+        .guide-mode__easy {}
+
+        .guide-mode__medium {}
+
+        .guide-mode__hard {}
+
+        .guide-mode__super {}
+
+        .guide-mode__hell {}
     }
 }

@@ -16,6 +16,7 @@ body {
   min-height: 100vh;
   padding: 20px 10px 10px;
   background-color: #333;
+  overflow: hidden;
 }
 
 .noti, .screen > .paper__item, .game-play, .game-mode .mode {
@@ -84,12 +85,6 @@ body {
   content: attr(data-content);
   animation: kf_youtpoint_after 0.3s ease 0s 1 both;
 }
-@media only screen and (min-width: 1024px) {
-  .point {
-    text-align: right;
-  }
-}
-
 @keyframes kf_youtpoint_after {
   0% {
     opacity: 1;
@@ -173,17 +168,18 @@ body {
   background-color: deeppink;
 }
 
-.click-counter {
-  font-size: 20px;
-  color: #fff;
+.crit-click {
   margin-top: 20px;
+  color: #fff;
 }
-.click-counter::before {
-  content: "Click counter: ";
-  font-size: 14px;
+.crit-click .crit-bonus {
+  font-size: 20px;
+}
+.crit-click .crit-bonus::before {
+  content: "x";
 }
 @media only screen and (min-width: 1024px) {
-  .click-counter {
+  .crit-click {
     text-align: center;
   }
 }
@@ -295,6 +291,80 @@ body {
   to {
     top: 0;
     opacity: 0;
+  }
+}
+.guide-toggler {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 999;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 99px;
+  border: 0;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 10px;
+  margin-left: auto;
+}
+
+.guide {
+  position: fixed;
+  z-index: 900;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0.3s ease, opacity 0.2s linear;
+}
+.guide.open {
+  visibility: visible;
+  opacity: 1;
+}
+.guide .guide-container {
+  color: #fff;
+  width: 375px;
+  max-width: 100%;
+  padding: 20px 10px;
+  margin-left: auto;
+  font-size: 14px;
+  margin-top: 50px;
+}
+.guide .guide-mode {
+  list-style: none;
+}
+.guide .guide-mode .mode-name {
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: 700;
+}
+.guide .guide-mode .mode-desc {
+  margin-top: 8px;
+}
+.guide .guide-mode__medium .mode-name {
+  color: #28a745;
+}
+.guide .guide-mode__hard .mode-name {
+  color: #0fbfff;
+}
+.guide .guide-mode__super .mode-name {
+  color: #ffc107;
+}
+.guide .guide-mode__hell .mode-name {
+  color: #dc3545;
+}
+@media only screen and (min-width: 1024px) {
+  .guide .guide-toggler {
+    cursor: pointer;
+  }
+  .guide .guide-container {
+    font-size: 16px;
   }
 }
 
