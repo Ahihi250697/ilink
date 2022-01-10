@@ -3,18 +3,24 @@
 .ani {
     display: inline-block;
     // transition: transform 0.3s ease, opacity 0.3s linear;
-    transition: transform 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity 0.3s linear;
+    //transition: transform 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity 0.3s linear;
     // transition-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
     // -webkit-transition-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
     // transition-duration: 0.4s;
     // -webkit-transition-duration: 0.4s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+    animation-duration: 0.4s;
+    -webkit-animation-duration: 0.4s;
+    animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    -webkit-animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
 }
 
 p {
     margin-bottom: 30px;
 }
 
-@import './_par/fadein';
+@import './_par/fade';
 @import './_par/zoom';
 @import './_par/wave';
 @import './_par/type';

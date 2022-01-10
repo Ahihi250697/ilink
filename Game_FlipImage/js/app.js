@@ -56,7 +56,7 @@ const Game = {
             this.yourPoint.addClass("add-point");
 
         } else {
-            _add = (this.mode + 1) * -2;
+            _add = (this.mode + 1) * -this.level;
             this.yourPoint.addClass("add-point lose");
         }
         setTimeout(() => {
@@ -69,9 +69,8 @@ const Game = {
             this.point = 0;
         } else {
             this.yourPoint.attr("data-content", _add);
-            this.yourPoint.html(this.point);
         }
-
+        this.yourPoint.html(this.point);
         $(".crit-bonus").html(this.pointBouns);
     },
 
