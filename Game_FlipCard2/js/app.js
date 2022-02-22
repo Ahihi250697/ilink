@@ -11,7 +11,7 @@
     -> lật hết bài -> end game -< chơi lại / thoát
 
 */
-console.log(object)
+console.log("object")
 const Game = {
 
 

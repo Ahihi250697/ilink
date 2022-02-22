@@ -1,0 +1,18 @@
+@charset 'UTF-8';
+
+*,
+::after,
+::before {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 1.15;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+@import './_par/var';
+
+@import './_par/button';

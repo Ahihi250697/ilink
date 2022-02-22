@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nav 3</title>
+    <title>function</title>
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/draw.css">
@@ -13,25 +13,22 @@
 </head>
 
 <body>
-    <header></header>
 
-    <main style="padding-top: 350px;">
-        <form action="">
-            <input type="number" id="khung123" name="khung" value="4" /> <br>
-            <button type="button" onclick="numberList()">Nạp</button> <br>
-        </form>
-
-        <div class="square">
-            <div class="draw"></div>
-        </div>
-    </main>
-
-    <footer>
-        
-    </footer>
-
-    <script src="./assets/js/jquery-3.4.1.js"></script>
-    <script src="./js/draw.js"></script>
-
+    <script>
+        Array.prototype.sortLower = function (callback) {
+            let _len = this.length;
+            let _new = [];
+            for (var _i = 0; _i < _len; _i++) {
+                let _c = callback(this[_i], this[_i + 1]);
+                console.log(_c);
+            }
+        }
+        let _arr = [1, 2, 5, -1, 2, -4, 2];
+        _arr.sortLower(function (a, b) {
+            return a - b
+        });
+        console.log('first' - 'asd' < 0);
+    </script>
 </body>
+
 </html>

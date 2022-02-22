@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="./css/ani.css">
+    <link rel="stylesheet" href="./css/styled.css">
+
+    <title>AniJs</title>
+</head>
+
+<body>
+
+    <div id="root">
+
+        <!-- #region: 'fade'-->
+        <div class="flex-box">
+            <div class="box ani fade"></div>
+        </div>
+        <div class="flex-box">
+            <div class="box ani fade_in"></div>
+            <div class="box ani fade_in_top"></div>
+            <div class="box ani fade_in_right"></div>
+            <div class="box ani fade_in_bottom"></div>
+            <div class="box ani fade_in_left"></div>
+        </div>
+        <!-- #endregion: 'fade'-->
+
+        <!-- #region: 'slide'-->
+        <div class="flex-box">
+            <div class="box ani slide_in_top"></div>
+            <div class="box ani slide_in_right"></div>
+            <div class="box ani slide_in_bottom"></div>
+            <div class="box ani slide_in_left"></div>
+        </div>
+        <!-- #endregion: 'slide'-->
+
+        <!-- #region: 'zoom'-->
+        <div class="flex-box">
+            <div class="box ani zoom_in"></div>
+            <div class="box ani zoom_out"></div>
+        </div>
+        <!-- #endregion: 'zoom'-->
+
+
+        <!-- #region: 'flash'-->
+        <div class="flex-box">
+            <div class="box ani flash" data-ani-delay="100"></div>
+            <div class="box ani flash_zoom"></div>
+        </div>
+        <!-- #endregion: 'zoom'-->
+
+        <!-- #region: 'bounce'-->
+        <div class="flex-box">
+            <div class="box ani bounce"></div>
+            <div class="box ani bounce_up"></div>
+        </div>
+        <!-- #endregion: 'bounce'-->
+
+        <!-- #region: 'wave'-->
+        <div class="text-box">
+            <h3 class="text ani wave">
+                Lorem, ipsum
+            </h3>
+
+            <div class="text-center">
+                <h3 class="text ani wave">
+                    Lorem ipsum dolor sit.
+                </h3>
+            </div>
+
+            <div class="text-right">
+                <h3 class="text ani wave">
+                    Lorem ipsum dolor sit amet.
+                </h3>
+            </div>
+
+            <h3 class="text ani linebar">
+                Lorem ipsum dolor sit amet.
+            </h3>
+
+            <div class="text-center">
+                <h3 class="text ani linebar">
+                    Lorem ipsum dolor sit.
+                </h3>
+            </div>
+
+            <div class="text-right">
+                <h3 class="text ani linebar">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                </h3>
+            </div>
+        </div>
+        <!-- #endregion: 'wave'-->
+
+        <div class="flex-box">
+            <figure class="ani img_slide">
+                <img src="./image_150.png" alt="" />
+            </figure>
+        </div>
+    </div>
+
+    <!-- 
+    <div id="app">
+
+        <div class="box ani fade-in">
+
+        </div>
+
+        <div>
+            <p class="ani wave" style="font-size: 40px;">
+                Lorem, ipsum dolor
+            </p>
+            <div class="ani type">
+                <h2 class="target" style="font-size: 40px;">
+                    Lorem, ipsum dolor Lorem, ipsum dolor
+                </h2>
+            </div>
+
+        </div>
+        <p class="ani linebar">
+            <span class="ani-inside">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos culpa fuga accusamus perspiciatis ullam.
+            </span>
+        </p>
+        <p class="ani bracket">
+            <span class="ani-inside">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos culpa fuga accusamus perspiciatis ullam.
+            </span>
+        </p>
+    </div>
+     -->
+
+    <script src="../assets/js/jquery-3.4.1.js"></script>
+    <script src="./js/app.js"></script>
+    <script>
+        AniJs.init({
+            delay: 150,
+            delayStart: 500,
+        });
+    </script>
+
+    <script>
+        // $(window).on("scroll", function () {
+
+        //     let _s = window.innerHeight;
+        //     let _h = $('html').innerHeight() - _s;
+        //     let _y = window.pageYOffset;
+
+        //     let _a = (_y) / (_h);
+
+        //     // console.log(_h, _y, _a);
+        //     $(".cl").css({
+        //         width: `${_a*100}%`
+        //     });
+        // });
+    </script>
+</body>
+
+</html>

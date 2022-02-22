@@ -1,0 +1,105 @@
+@keyframes kf_flash {
+
+    0%,
+    66% {
+        opacity: 0;
+    }
+
+    33%,
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes kf_flash {
+
+    0%,
+    66% {
+        opacity: 0;
+    }
+
+    33%,
+    100% {
+        opacity: 1;
+    }
+}
+
+.flash {
+    opacity: 0;
+
+    &.animated {
+        animation-name: kf_flash;
+        -webkit-animation-name: kf_flash;
+    }
+}
+
+@keyframes kf_flash_zoom {
+
+    0% {
+        opacity: 0;
+        transform: scale3d(1.2, 1.2, 1);
+        -webkit-transform: scale3d(1.2, 1.2, 1);
+        -moz-transform: scale3d(1.2, 1.2, 1);
+        -ms-transform: scale3d(1.2, 1.2, 1);
+        -o-transform: scale3d(1.2, 1.2, 1);
+    }
+
+    66% {
+        opacity: 0;
+        transform: scale3d(1.1, 1.1, 1);
+        -webkit-transform: scale3d(1.1, 1.1, 1);
+        -moz-transform: scale3d(1.1, 1.1, 1);
+        -ms-transform: scale3d(1.1, 1.1, 1);
+        -o-transform: scale3d(1.1, 1.1, 1);
+    }
+
+    33%,
+    100% {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+        -webkit-transform: scale3d(1, 1, 1);
+        -moz-transform: scale3d(1, 1, 1);
+        -ms-transform: scale3d(1, 1, 1);
+        -o-transform: scale3d(1, 1, 1);
+    }
+}
+
+@-webkit-keyframes kf_flash_zoom {
+
+    0% {
+        opacity: 0;
+        transform: scale3d(1.2, 1.2, 1);
+        -webkit-transform: scale3d(1.2, 1.2, 1);
+        -moz-transform: scale3d(1.2, 1.2, 1);
+        -ms-transform: scale3d(1.2, 1.2, 1);
+        -o-transform: scale3d(1.2, 1.2, 1);
+    }
+
+    66% {
+        opacity: 0;
+        transform: scale3d(1.1, 1.1, 1);
+        -webkit-transform: scale3d(1.1, 1.1, 1);
+        -moz-transform: scale3d(1.1, 1.1, 1);
+        -ms-transform: scale3d(1.1, 1.1, 1);
+        -o-transform: scale3d(1.1, 1.1, 1);
+    }
+
+    33%,
+    100% {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+        -webkit-transform: scale3d(1, 1, 1);
+        -moz-transform: scale3d(1, 1, 1);
+        -ms-transform: scale3d(1, 1, 1);
+        -o-transform: scale3d(1, 1, 1);
+    }
+}
+
+.flash_zoom {
+    opacity: 0;
+
+    &.animated {
+        animation-name: kf_flash_zoom;
+        -webkit-animation-name: kf_flash_zoom;
+    }
+}

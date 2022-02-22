@@ -1,0 +1,98 @@
+@keyframes kf_zoom_in {
+    0% {
+        opacity: 0;
+        transform: scale3d(1.35, 1.35, 1);
+        -webkit-transform: scale3d(1.35, 1.35, 1);
+        -moz-transform: scale3d(1.35, 1.35, 1);
+        -ms-transform: scale3d(1.35, 1.35, 1);
+        -o-transform: scale3d(1.35, 1.35, 1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+        -webkit-transform: scale3d(1, 1, 1);
+        -moz-transform: scale3d(1, 1, 1);
+        -ms-transform: scale3d(1, 1, 1);
+        -o-transform: scale3d(1, 1, 1);
+    }
+}
+
+@-webkit-keyframes kf_zoom_in {
+    0% {
+        opacity: 0;
+        transform: scale3d(1.35, 1.35, 1);
+        -webkit-transform: scale3d(1.35, 1.35, 1);
+        -moz-transform: scale3d(1.35, 1.35, 1);
+        -ms-transform: scale3d(1.35, 1.35, 1);
+        -o-transform: scale3d(1.35, 1.35, 1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale3d(0, 0, 0);
+        -webkit-transform: scale3d(0, 0, 0);
+        -moz-transform: scale3d(0, 0, 0);
+        -ms-transform: scale3d(0, 0, 0);
+        -o-transform: scale3d(0, 0, 0);
+    }
+}
+
+.zoom_in {
+    opacity: 0;
+
+    &.animated {
+        animation-name: kf_zoom_in;
+        -webkit-animation-name: kf_zoom_in;
+    }
+}
+
+@keyframes kf_zoom_out {
+    0% {
+        opacity: 0;
+        transform: scale3d(0.5, 0.5, 1);
+        -webkit-transform: scale3d(0.5, 0.5, 1);
+        -moz-transform: scale3d(0.5, 0.5, 1);
+        -ms-transform: scale3d(0.5, 0.5, 1);
+        -o-transform: scale3d(0.5, 0.5, 1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+        -webkit-transform: scale3d(1, 1, 1);
+        -moz-transform: scale3d(1, 1, 1);
+        -ms-transform: scale3d(1, 1, 1);
+        -o-transform: scale3d(1, 1, 1);
+    }
+}
+
+@-webkit-keyframes kf_zoom_out {
+    0% {
+        opacity: 0;
+        transform: scale3d(0.5, 0.5, 1);
+        -webkit-transform: scale3d(0.5, 0.5, 1);
+        -moz-transform: scale3d(0.5, 0.5, 1);
+        -ms-transform: scale3d(0.5, 0.5, 1);
+        -o-transform: scale3d(0.5, 0.5, 1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+        -webkit-transform: scale3d(1, 1, 1);
+        -moz-transform: scale3d(1, 1, 1);
+        -ms-transform: scale3d(1, 1, 1);
+        -o-transform: scale3d(1, 1, 1);
+
+    }
+}
+
+.zoom_out {
+    opacity: 0;
+
+    &.animated {
+        animation-name: kf_zoom_out;
+        -webkit-animation-name: kf_zoom_out;
+    }
+}

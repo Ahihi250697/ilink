@@ -22,6 +22,7 @@ body {
     font-size: 1.6rem;
     line-height: 1.15;
     font-family: 'Courier New', Courier, monospace;
+    overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -59,10 +60,6 @@ input,
 select,
 img {
     vertical-align: middle;
-}
-
-figure {
-    width: 100%;
 }
 
 figure img {

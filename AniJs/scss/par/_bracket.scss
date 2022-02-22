@@ -1,0 +1,59 @@
+.bracket {
+    position: relative;
+
+    &::before,
+    &::after {
+        content: '';
+        width: 6px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        font-size: inherit;
+        font-weight: 700;
+        border: 2px solid black;
+        background-color: #000;
+        transition: opacity 0.5s linear, left 0.5s ease;
+    }
+
+    &::before {
+        border-right: 0;
+        left: 50%;
+    }
+
+    &::after {
+        border-left: 0;
+        left: 50%;
+    }
+
+    .ani-inside {
+        opacity: 0;
+        transition: opacity 0.2s linear 0.3s;
+    }
+
+    &.animated {
+
+        &::before,
+        &::after {
+            opacity: 0;
+            background-color: transparent;
+        }
+
+        &::before {
+            // content: '[';
+            //  width: 100%;
+            // 
+            left: 0%;
+        }
+
+        &::after {
+            //   content: ']';
+            //  width: 0%;
+            //  opacity: 0;
+            left: 100%;
+        }
+
+        .ani-inside {
+            opacity: 1;
+        }
+    }
+}
